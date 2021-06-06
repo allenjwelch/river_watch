@@ -9,7 +9,17 @@ export const RIVER_LOCATIONS = {
 
 export const LOCATION_DATA = {
     CHATT_ATL: {
+        ZIP: '30328',
         RIVER_STATIONS: '02335000,02335880,02336000',
-        ZIP: '30328'
+        STATION_NAMES: {
+            'CHATTAHOOCHEE RIVER NEAR NORCROSS, GA': 'MEDLOCK_BRIDGE',
+            'CHATT R AT POWERS FY & I-285 NR ATLANTA, GA': 'POWERS_FERRY',
+            'CHATTAHOOCHEE RIVER AT ATLANTA, GA' : 'PACES_FERRY'
+        },
+        FORMATTED_STATION_NAMES: {
+            MEDLOCK_BRIDGE: 'Medlock Bridge',
+            POWERS_FERRY: 'Powers Ferry',
+            PACES_FERRY: 'Paces Ferry'
+        }
     }
 }

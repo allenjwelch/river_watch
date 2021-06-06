@@ -1,7 +1,12 @@
 import logo from './logo.svg';
 import './App.scss';
+import { getConditions, getWeather } from './utils/axios';
+import { RIVER_LOCATIONS } from './constants';
 
 function App() {
+  console.log(getConditions(RIVER_LOCATIONS.CHATT_ATL));
+  console.log(getWeather(RIVER_LOCATIONS.CHATT_ATL));
+
   return (
     <div className="App">
       <header className="App-header">

@@ -7,6 +7,10 @@ export const RIVER_LOCATIONS = {
     CHATT_ATL: 'CHATT_ATL'
 }
 
+export const LOCATION_NAMES = {
+    CHATT_ATL: 'Chattahoochee River - Atlanta Area'
+}
+
 export const LOCATION_DATA = {
     CHATT_ATL: {
         ZIP: '30328',

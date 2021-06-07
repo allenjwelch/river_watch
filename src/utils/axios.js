@@ -15,7 +15,7 @@ export const getConditions = async (location) => {
             const url = WATER_SERVICE_URL.replace('{SITES}', stations)
             try {
                 const response = await axios.get(url);
-                console.log(response);
+                return response;
             } catch (error) {
                 console.error(error);
             }
@@ -30,10 +30,10 @@ export const getWeather = async (location) => {
 
     switch (location) {
         case RIVER_LOCATIONS.CHATT_ATL: 
-            const url = WEATHER_SERVICE_URL.replace('{ZIP}', zipcode);
+            const url = WEATHER_SERVICE_URL.replace('{zip}', zipcode);
             try {
                 const response = await axios.get(url);
-                console.log(response);
+                return response;
             } catch (error) {
                 console.error(error);
             }

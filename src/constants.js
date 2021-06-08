@@ -3,6 +3,11 @@ const { REACT_APP_WEATHER_KEY } = process.env;
 export const WATER_SERVICE_URL =  'https://waterservices.usgs.gov/nwis/iv/?format=json&sites={SITES}&parameterCd=00060,00065,99407,00011&siteStatus=all';
 export const WEATHER_SERVICE_URL = `https://api.openweathermap.org/data/2.5/weather?zip={ZIP},us&units=imperial&appid=${REACT_APP_WEATHER_KEY}`;
 
+export const ERROR_MESSAGES = {
+    NO_WATER: 'USGS Water Services not available',
+    NO_WEATHER: 'Weather Forcast not available'
+}
+
 export const RIVER_LOCATIONS = {
     CHATT_ATL: 'CHATT_ATL'
 }

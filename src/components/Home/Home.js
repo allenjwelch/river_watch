@@ -3,7 +3,7 @@ import Station from '../Station/Station';
 import Weather from '../Weather/Weather';
 import { getConditions } from '../../utils/axios';
 import { conditionsParser } from '../../utils/conditionsParser';
-import { RIVER_LOCATIONS, LOCATION_NAMES } from '../../constants';
+import { RIVER_LOCATIONS, LOCATION_NAMES, ERROR_MESSAGES } from '../../constants';
 
 const CN = 'home-page';
 
@@ -28,17 +28,26 @@ const Home = () => {
         getCurrentConditions();
     }, []);
 
+    const renderStationInfo = () => {
+        if (conditions) {
+            return (
+                conditions.sites.map(site => (
+                    <Station key={site.name} siteData={site} />
+                ))
+            );
+        }
+        return <p className='error'>{ERROR_MESSAGES.NO_WATER}</p>;
+    };
+
     return (
         <main className={CN}>
             <section className='title'>
                 <h2>River Watch</h2>
                 <h4>{LOCATION_NAMES[riverLocation]}</h4>
+            </section>
+            <section className='info'>
                 <Weather location={riverLocation} />
-                { 
-                    conditions && conditions.sites.map(site => (
-                        <Station key={site.name} siteData={site} />
-                    ))
-                }
+                { renderStationInfo() }
             </section>
         </main>
     )

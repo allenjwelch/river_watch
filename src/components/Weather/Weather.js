@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Card, Collapse, Table } from 'antd';
 import { getWeather } from '../../utils/axios';
+import { ERROR_MESSAGES } from '../../constants';
+
+const { Panel } = Collapse;
 
 const CN = 'weather-info';
 
@@ -23,9 +27,64 @@ const Weather = ({ location }) => {
         getCurrentWeather();
     }, []);
 
+    const columns = [{ title: 'title', dataIndex: 'title', key: 'title' }];
+
+    const data = [
+        {
+          key: 1,
+          title: 'John Brown'
+        }
+    ];
+
+    const renderForcast = () => {
+        if (forcast) {
+            const { name, main, sys, weather, wind } = forcast;
+
+            return (
+                <div className='forcast'>
+                    <Card 
+                        size="small" 
+                        title='Weather Conditions'
+                        extra={<a href="#">More</a>} 
+                        bordered={false}
+                        style={{ width: '90%' }}
+                    >
+                        <Collapse defaultActiveKey={['forcast']} ghost>
+                            <Panel header="Forcast" key="forcast">
+                                <p><strong>Sunrise:</strong> {sys.sunrise}</p>
+                            </Panel>
+                            <Panel header="Temperature" key="temp">
+                                <p><strong>Sunrise:</strong> {sys.sunrise}</p>
+                            </Panel>
+                            <Panel header="Wind" key="wind">
+                                <p><strong>Speed:</strong> {wind.speed}</p>
+                                <p><strong>Gusts:</strong> {wind.gust}</p>
+                            </Panel>
+                            <Panel header="Daylight" key="daylight">
+                                <p><strong>Sunrise:</strong> {sys.sunrise}</p>
+                                <p><strong>Sundown:</strong> {sys.sunset}</p>
+                                <p><strong>Hours Remaining: </strong> placeholder</p>
+                            </Panel>
+                        </Collapse>
+                    </Card>
+                    {/* <Table
+                        columns={columns}
+                        expandable={{
+                            expandedRowRender: record => <p style={{ margin: 0 }}>{record.description}</p>,
+                            rowExpandable: record => record.name !== 'Not Expandable',
+                        }}
+                        dataSource={data}
+                        pagination={false}
+                    /> */}
+                </div>
+            );
+        }
+        return <p className='error'>{ERROR_MESSAGES.NO_WEATHER}</p>;
+    };
+
     return (
         <div className={CN}>
-            Weather
+            { renderForcast() }
         </div>
     )
 };

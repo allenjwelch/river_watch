@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getConditions, getWeather } from '../../utils/axios';
+import Station from '../Station/Station';
+import Weather from '../Weather/Weather';
+import { getConditions } from '../../utils/axios';
 import { conditionsParser } from '../../utils/conditionsParser';
 import { RIVER_LOCATIONS, LOCATION_NAMES } from '../../constants';
 
@@ -26,15 +28,17 @@ const Home = () => {
         getCurrentConditions();
     }, []);
 
-
-    // console.log(conditions);
-    // console.log(getWeather(RIVER_LOCATIONS.CHATT_ATL));
-
     return (
         <main className={CN}>
             <section className='title'>
                 <h2>River Watch</h2>
                 <h4>{LOCATION_NAMES[riverLocation]}</h4>
+                <Weather location={riverLocation} />
+                { 
+                    conditions && conditions.sites.map(site => (
+                        <Station key={site.name} siteData={site} />
+                    ))
+                }
             </section>
         </main>
     )

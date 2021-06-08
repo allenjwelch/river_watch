@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Collapse, Table } from 'antd';
+import { Card, Collapse } from 'antd';
 import { getWeather } from '../../utils/axios';
 import { ERROR_MESSAGES } from '../../constants';
 
@@ -27,14 +27,6 @@ const Weather = ({ location }) => {
         getCurrentWeather();
     }, []);
 
-    const columns = [{ title: 'title', dataIndex: 'title', key: 'title' }];
-
-    const data = [
-        {
-          key: 1,
-          title: 'John Brown'
-        }
-    ];
 
     const renderForcast = () => {
         if (forcast) {
@@ -67,15 +59,6 @@ const Weather = ({ location }) => {
                             </Panel>
                         </Collapse>
                     </Card>
-                    {/* <Table
-                        columns={columns}
-                        expandable={{
-                            expandedRowRender: record => <p style={{ margin: 0 }}>{record.description}</p>,
-                            rowExpandable: record => record.name !== 'Not Expandable',
-                        }}
-                        dataSource={data}
-                        pagination={false}
-                    /> */}
                 </div>
             );
         }

@@ -26,12 +26,15 @@ export const getConditions = async (location) => {
 }
 
 export const getWeather = async (location) => {
-    const zipcode = LOCATION_DATA[location].ZIP;
+    const coord = LOCATION_DATA[location].COORD;
     console.log(location);
 
     switch (location) {
         case RIVER_LOCATIONS.CHATT_ATL: 
-            const url = WEATHER_SERVICE_URL.replace('{ZIP}', zipcode);
+            const url = WEATHER_SERVICE_URL
+                .replace('{LON}', coord.LON)
+                .replace('{LAT}', coord.LAT);
+
             try {
                 const response = await axios.get(url);
                 return response;

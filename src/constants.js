@@ -1,11 +1,11 @@
 const { REACT_APP_WEATHER_KEY } = process.env;
 
 export const WATER_SERVICE_URL =  'https://waterservices.usgs.gov/nwis/iv/?format=json&sites={SITES}&parameterCd=00060,00065,99407,00011&siteStatus=all';
-export const WEATHER_SERVICE_URL = `https://api.openweathermap.org/data/2.5/weather?zip={ZIP},us&units=imperial&appid=${REACT_APP_WEATHER_KEY}`;
+export const WEATHER_SERVICE_URL = `https://api.openweathermap.org/data/2.5/onecall?lat={LAT}&lon={LON}&units=imperial&exclude=minute&appid=${REACT_APP_WEATHER_KEY}`;
 
 export const ERROR_MESSAGES = {
     NO_WATER: 'USGS Water Services not available',
-    NO_WEATHER: 'Weather Forcast not available'
+    NO_WEATHER: 'Weather data not available'
 }
 
 export const RIVER_LOCATIONS = {
@@ -18,7 +18,10 @@ export const LOCATION_NAMES = {
 
 export const LOCATION_DATA = {
     CHATT_ATL: {
-        ZIP: '30328',
+        COORD: {
+            LON: '-84.3958',
+            LAT: '33.9335'
+        },
         RIVER_STATIONS: '02335000,02335880,02336000',
         STATION_NAMES: {
             'CHATTAHOOCHEE RIVER NEAR NORCROSS, GA': 'MEDLOCK_BRIDGE',

@@ -4,6 +4,9 @@ import { getWeather } from '../../utils/axios';
 import { timeFormat, timeRemaining } from '../../utils/dateTimeFormat';
 import { ERROR_MESSAGES } from '../../constants';
 
+import Current from './Current/Current';
+import DayHour from './DayHour/DayHour';
+
 import './Weather.scss';
 
 const { Panel } = Collapse;
@@ -30,50 +33,9 @@ const Weather = ({ location }) => {
         getCurrentWeather();
     }, []);
 
-    const renderCurrentWeather = () => {
-        if (forcast.current) {
-            const { temp, sunset, clouds, wind_speed, wind_gust, weather }  = forcast.current;
-
-            return (
-                <Panel header="Current" key='current'>
-                    <Row>
-                        <Col offset={2} className='key'>Weather: </Col>
-                        <Col className='value'>{weather[0].main}</Col>
-                    </Row>
-                    <Row>
-                        <Col offset={2} className='key'>Current Temp:</Col>
-                        <Col className='value'>{temp} &#176;F</Col>
-                    </Row>
-                    <Row>
-                        <Col offset={2} className='key'>Cloud Coverage </Col>
-                        <Col className='value'>{clouds}%</Col>
-                    </Row>
-                    <Row>
-                        <Col offset={2} className='key'>Wind Speed:</Col>
-                        <Col className='value'>{wind_speed} mph</Col>
-                    </Row>
-                    <Row>
-                        <Col offset={2} className='key'>Wind Gusts:</Col>
-                        <Col className='value'>{wind_gust} mph</Col>
-                    </Row>
-                    <Row>
-                        <Col offset={2} className='key'>Sunset:</Col>
-                        <Col className='value'>{timeFormat(sunset)}</Col>
-                    </Row>
-                    <Row>
-                        <Col offset={2} className='key'>Daylight Remaining:</Col>
-                        <Col className='value'>{timeRemaining(Date.now(), sunset * 1000)}</Col>
-                    </Row>
-                </Panel>
-            );
-        }
-
-        return 'Current weather data not available';
-    }
-
-
     const renderForcast = () => {
         if (forcast) {
+            const { current, hourly, daily }= forcast;
 
             return (
                 <Card 
@@ -89,8 +51,23 @@ const Weather = ({ location }) => {
                         defaultActiveKey={['current']} 
                         ghost
                     >
-                        { renderCurrentWeather() }
-                        
+                        <Panel header="Current" key='current'>
+                            <Current currentForcast={current} />
+                        </Panel>
+                        <Panel header="Daily" key='daily'>
+                            <DayHour 
+                                classname='daily-forcast' 
+                                forcast={daily} 
+                                isHourly={false}
+                            />
+                        </Panel>
+                        <Panel header="Hourly" key='hourly'>
+                            <DayHour 
+                                classname='hourly-forcast' 
+                                forcast={hourly} 
+                                isHourly
+                            />
+                        </Panel>
                         
                         
                     </Collapse>

@@ -36,10 +36,29 @@ export const timeFormat = (unixTime) => {
     }
 };
 
+export const dateFormat = (unixTime) => {
+    let formattedDate = '0/0/00';
+    // const isoDateToLocalDate = (ISOTimeString, offsetInMinutes) => {
+    //     var newTime = new Date(ISOTimeString);
+    //     return new Date(newTime.getTime() - (offsetInMinutes * 60000));
+    // }
+    
+    let intlFormat = new Intl.DateTimeFormat('en' , {
+        dateStyle: 'full',
+    });
+
+    try {
+        const date = new Date(unixTime * 1000);
+        formattedDate = intlFormat.format(date);
+    } catch (error) {
+        console.warn('Error converting date');
+    }
+
+    return formattedDate;
+};
+
 export const timeRemaining = (fromUnix, toUnix) => {
 
-    console.log(new Date(fromUnix).toLocaleString());
-    console.log(new Date(toUnix * 1000).toLocaleString());
     try {
         let diff = Math.floor((toUnix - fromUnix) / 1000)
         const units = [

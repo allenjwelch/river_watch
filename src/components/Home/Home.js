@@ -6,6 +6,8 @@ import { getConditions } from '../../utils/axios';
 import { conditionsParser } from '../../utils/conditionsParser';
 import { RIVER_LOCATIONS, LOCATION_NAMES, ERROR_MESSAGES } from '../../constants';
 
+import './Home.scss';
+
 const { Panel } = Collapse;
 
 const CN = 'home-page';
@@ -34,29 +36,31 @@ const Home = () => {
     const renderStationInfo = () => {
         if (conditions) {
             return (
-                <Card 
-                    size="small" 
-                    title='Water Stations'
-                    className='water-stations'
-                    extra={<a href="#">More</a>} 
-                    bordered={false}
-                    style={{ width: '90%' }}
-                >
-                    <Collapse 
-                        defaultActiveKey={['']} 
-                        ghost
+                <div className='water-stations'>
+
+                    <Card 
+                        size="small" 
+                        title='Water Stations'
+                        className='stations'
+                        extra={<a href="#">More</a>} 
+                        bordered={false}
+                        style={{ width: '90%' }}
                     >
-                        {
-                            conditions.sites.map(site => (
-                                <Panel header={site.name} key={site.name}>
-                                    <Station name={site.name} siteData={site} />
-                                </Panel>
-                            ))
-                        }
-                       
-                    </Collapse>
-                </Card>
-                
+                        <Collapse 
+                            defaultActiveKey={['']} 
+                            ghost
+                        >
+                            {
+                                conditions.sites.map(site => (
+                                    <Panel header={site.name} key={site.name}>
+                                        <Station name={site.name} siteData={site} />
+                                    </Panel>
+                                ))
+                            }
+                        
+                        </Collapse>
+                    </Card>
+                </div>
             );
         }
         return <p className='error'>{ERROR_MESSAGES.NO_WATER}</p>;

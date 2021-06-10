@@ -31,7 +31,7 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                         style={{ width: 'auto' }}
                     >
                         <Row>
-                            <Col offset={2} className='label'>
+                            <Col className='label'>
                                 <p>Weather:</p>
                             </Col>
                             <Col className='value'>
@@ -41,7 +41,7 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                         {
                             isHourly ? (
                                 <Row>
-                                    <Col offset={2} className='label'>
+                                    <Col className='label'>
                                         <p>Temp:</p>
                                         <p>Feels Like:</p>
                                     </Col>
@@ -52,7 +52,7 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                                 </Row>
                             ) : (
                                 <Row>
-                                    <Col offset={2} className='label'>
+                                    <Col className='label'>
                                         <p>Avg Temp:</p>
                                         <p>High Temp:</p>
                                         <p>Feels Like:</p>
@@ -66,7 +66,7 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                             )
                         }
                         <Row>
-                            <Col offset={2} className='label'>
+                            <Col className='label'>
                                 <p>Cloud Coverage:</p>
                             </Col>
                             <Col className='value'>
@@ -74,7 +74,7 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col offset={2} className='label'>
+                            <Col className='label'>
                                 <p>Precipitation</p>
                             </Col>
                             <Col className='value'>
@@ -82,7 +82,7 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col offset={2} className='label'>
+                            <Col className='label'>
                                 <p>Wind Speed:</p>
                                 <p>Wind Gusts:</p>
                             </Col>

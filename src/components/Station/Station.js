@@ -14,27 +14,32 @@ const Station = ({ name, siteData }) => {
     const renderStationData = () => {
         if (siteData) {
             const { variables }  = siteData;
-
-            const variablesArrary = variables.map(variable => {
+            let sampleTime = '0:00';
+            let variablesArray = variables.map(variable => {
                 const { description, dateTime, unit, value } = variable;
-     
+                sampleTime = dateTimeFormat(dateTime);
+
                 return (
-                    <Row className='variables'>
-                        <Col offset={2}>
+                    <Row className='variable'>
+                        <Col>
                             <p>
                                 <span className='label'>{STATION_VARIABLES[description]}</span>
                                 <span className='value'>{value} {unit}</span>
                             </p>
-                            <p>@ {dateTimeFormat(dateTime)}</p>
+                            {/* <p>@ {dateTimeFormat(dateTime)}</p> */}
                         </Col>
-                        {/* <Col className='value'>
-                            <p></p>
-                        </Col> */}
                     </Row>
                 )
             })
 
-            return variablesArrary;
+            variablesArray = [
+                <div className='variables'>
+                    {variablesArray}
+                    <h5>@ {sampleTime}</h5>
+                </div>
+            ];
+
+            return variablesArray;
         }
     
         return <p>{name} data not available</p>;

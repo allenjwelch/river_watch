@@ -24,9 +24,8 @@ export const timeFormat = (unixTime) => {
     try{
         const date = new Date(unixTime * 1000);
         let hours = date.getHours();
-        let period = 'am';
+        let period = hours >= 12 ? 'pm' : 'am';
         if (hours > 12) {
-            period = 'pm';
             hours -= 12;
         }
         const minutes = "0" + date.getMinutes();
@@ -38,10 +37,6 @@ export const timeFormat = (unixTime) => {
 
 export const dateFormat = (unixTime) => {
     let formattedDate = '0/0/00';
-    // const isoDateToLocalDate = (ISOTimeString, offsetInMinutes) => {
-    //     var newTime = new Date(ISOTimeString);
-    //     return new Date(newTime.getTime() - (offsetInMinutes * 60000));
-    // }
     
     let intlFormat = new Intl.DateTimeFormat('en' , {
         dateStyle: 'full',

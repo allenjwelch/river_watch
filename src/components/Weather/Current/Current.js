@@ -12,7 +12,7 @@ const Current = ({ currentForcast }) => {
             return (
                 <>
                     <Row>
-                        <Col offset={2} className='key'>
+                        <Col offset={2} className='label'>
                             <p>Weather:</p>
                         </Col>
                         <Col className='value'>
@@ -20,7 +20,7 @@ const Current = ({ currentForcast }) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col offset={2} className='key'>
+                        <Col offset={2} className='label'>
                             <p>Current Temp:</p>
                         </Col>
                         <Col className='value'>
@@ -28,7 +28,7 @@ const Current = ({ currentForcast }) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col offset={2} className='key'>
+                        <Col offset={2} className='label'>
                             <p>Cloud Coverage:</p>
                         </Col>
                         <Col className='value'>
@@ -36,7 +36,7 @@ const Current = ({ currentForcast }) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col offset={2} className='key'>
+                        <Col offset={2} className='label'>
                             <p>Wind Speed:</p>
                         </Col>
                         <Col className='value'>
@@ -44,7 +44,7 @@ const Current = ({ currentForcast }) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col offset={2} className='key'>
+                        <Col offset={2} className='label'>
                             <p>Wind Gusts:</p>
                         </Col>
                         <Col className='value'>
@@ -52,7 +52,7 @@ const Current = ({ currentForcast }) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col offset={2} className='key'>
+                        <Col offset={2} className='label'>
                             <p>Sunset:</p>
                         </Col>
                         <Col className='value'>
@@ -60,7 +60,7 @@ const Current = ({ currentForcast }) => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col offset={2} className='key'>
+                        <Col offset={2} className='label'>
                             <p>Daylight Remaining:</p>
                         </Col>
                         <Col className='value'>

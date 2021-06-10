@@ -8,6 +8,12 @@ export const ERROR_MESSAGES = {
     NO_WEATHER: 'Weather data not available'
 }
 
+export const STATION_VARIABLES = {
+    'Discharge, cubic feet per second': 'Flow Rate',
+    'Gage height, feet': 'Gage Height',
+    'Escherichia coli, estimated by regression equation, water, colonies per 100 milliliters': 'E. Coli Level'
+}
+
 export const RIVER_LOCATIONS = {
     CHATT_ATL: 'CHATT_ATL'
 }
@@ -22,14 +28,16 @@ export const LOCATION_DATA = {
             LON: '-84.3958',
             LAT: '33.9335'
         },
-        RIVER_STATIONS: '02335000,02335880,02336000',
+        RIVER_STATIONS: '02335000,02335815,02335880,02336000',
         STATION_NAMES: {
             'CHATTAHOOCHEE RIVER NEAR NORCROSS, GA': 'MEDLOCK_BRIDGE',
+            'CHATTAHOOCHEE RIVER BELOW MORGAN FALLS DAM, GA': 'MORGAN_FALLS',
             'CHATT R AT POWERS FY & I-285 NR ATLANTA, GA': 'POWERS_FERRY',
             'CHATTAHOOCHEE RIVER AT ATLANTA, GA' : 'PACES_FERRY'
         },
         FORMATTED_STATION_NAMES: {
             MEDLOCK_BRIDGE: 'Medlock Bridge',
+            MORGAN_FALLS: 'Morgan Falls Dam',
             POWERS_FERRY: 'Powers Ferry',
             PACES_FERRY: 'Paces Ferry'
         }

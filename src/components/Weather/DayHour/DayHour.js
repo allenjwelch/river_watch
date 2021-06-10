@@ -13,8 +13,7 @@ const DayHour = ({ classname, forcast, isHourly }) => {
 
             if (isHourly) {
                 forcastArray = forcast.filter(({dt}) => {
-                    const today = Date.now() / 1000;
-                    console.log(dateFormat(dt), dateFormat(today));
+                    const today = Math.floor(Date.now() / 1000);
                     if (dateFormat(dt) === dateFormat(today)) {
                         return true;
                     }
@@ -32,27 +31,42 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                         style={{ width: 'auto' }}
                     >
                         <Row>
-                            <Col offset={2}>
+                            <Col offset={2} className='label'>
                                 <p>Weather:</p>
                             </Col>
                             <Col className='value'>
                                 <p>{weather[0].main}</p>
                             </Col>
                         </Row>
+                        {
+                            isHourly ? (
+                                <Row>
+                                    <Col offset={2} className='label'>
+                                        <p>Temp:</p>
+                                        <p>Feels Like:</p>
+                                    </Col>
+                                    <Col className='value'>
+                                        <p>{temp} &#176;F</p>
+                                        <p>{feels_like} &#176;F</p>
+                                    </Col>
+                                </Row>
+                            ) : (
+                                <Row>
+                                    <Col offset={2} className='label'>
+                                        <p>Avg Temp:</p>
+                                        <p>High Temp:</p>
+                                        <p>Feels Like:</p>
+                                    </Col>
+                                    <Col className='value'>
+                                        <p>{temp.day} &#176;F</p>
+                                        <p>{temp.max} &#176;F</p>
+                                        <p>{feels_like.day} &#176;F</p>
+                                    </Col>
+                                </Row>
+                            )
+                        }
                         <Row>
-                            <Col offset={2}>
-                                <p>Avg Temp:</p>
-                                <p>High Temp:</p>
-                                <p>Feels Like:</p>
-                            </Col>
-                            <Col className='value'>
-                                <p>{temp.day} &#176;F</p>
-                                <p>{temp.max} &#176;F</p>
-                                <p>{feels_like.day} &#176;F</p>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col offset={2}>
+                            <Col offset={2} className='label'>
                                 <p>Cloud Coverage:</p>
                             </Col>
                             <Col className='value'>
@@ -60,15 +74,15 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col offset={2}>
+                            <Col offset={2} className='label'>
                                 <p>Precipitation</p>
                             </Col>
                             <Col className='value'>
-                                <p>{pop * 100}%</p>
+                                <p>{Math.floor(pop * 100)}%</p>
                             </Col>
                         </Row>
                         <Row>
-                            <Col offset={2}>
+                            <Col offset={2} className='label'>
                                 <p>Wind Speed:</p>
                                 <p>Wind Gusts:</p>
                             </Col>

@@ -47,7 +47,6 @@ const Weather = ({ location }) => {
                     style={{ width: '90%' }}
                 >
                     <Collapse 
-                        className='current'
                         defaultActiveKey={['current']} 
                         ghost
                     >

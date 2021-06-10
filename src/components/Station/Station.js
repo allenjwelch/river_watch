@@ -1,54 +1,50 @@
 import React from 'react';
+import { Col, Row } from 'antd';
 import { dateTimeFormat } from '../../utils/dateTimeFormat';
+import { STATION_VARIABLES } from '../../constants';
 
-const CN = 'site-info';
+import './Station.scss';
 
-const Station = ({ siteData }) => {
+const CN = 'station-info';
 
-    // console.log(siteData);
+const Station = ({ name, siteData }) => {
 
-    // <Card 
-    //     size="small" 
-    //     title='Weather Conditions'
-    //     extra={<a href="#">More</a>} 
-    //     bordered={false}
-    //     style={{ width: '90%' }}
-    // >
-    //     <Collapse defaultActiveKey={['forcast']} ghost>
-    //         <Panel header="Forcast" key="forcast">
-    //             <p><strong>Sunrise:</strong> {sys.sunrise}</p>
-    //         </Panel>
-    //         <Panel header="Temperature" key="temp">
-    //             <p><strong>Sunrise:</strong> {sys.sunrise}</p>
-    //         </Panel>
-    //         <Panel header="Wind" key="wind">
-    //             <p><strong>Speed:</strong> {wind.speed}</p>
-    //             <p><strong>Gusts:</strong> {wind.gust}</p>
-    //         </Panel>
-    //         <Panel header="Daylight" key="daylight">
-    //             <p><strong>Sunrise:</strong> {sys.sunrise}</p>
-    //             <p><strong>Sundown:</strong> {sys.sunset}</p>
-    //             <p><strong>Hours Remaining: </strong> placeholder</p>
-    //         </Panel>
-    //     </Collapse>
-    // </Card>
+    console.log(siteData);
+
+    const renderStationData = () => {
+        if (siteData) {
+            const { variables }  = siteData;
+
+            const variablesArrary = variables.map(variable => {
+                const { description, dateTime, unit, value } = variable;
+     
+                return (
+                    <Row className='variables'>
+                        <Col offset={2}>
+                            <p>
+                                <span className='label'>{STATION_VARIABLES[description]}</span>
+                                <span className='value'>{value} {unit}</span>
+                            </p>
+                            <p>@ {dateTimeFormat(dateTime)}</p>
+                        </Col>
+                        {/* <Col className='value'>
+                            <p></p>
+                        </Col> */}
+                    </Row>
+                )
+            })
+
+            return variablesArrary;
+        }
+    
+        return <p>{name} data not available</p>;
+    };
 
     return (
         <div className={CN}>
-            <h3>{siteData.name}</h3>
-            {
-                siteData.variables.map(variable => (
-                    <div>
-                        <p>{variable.description}</p>
-                        <p>{dateTimeFormat(variable.dateTime)}</p>
-                        <p>{variable.unit}</p>
-                        <p>{variable.value}</p>
-                    </div>
-                ))
-            }
-            <p></p>
+            { renderStationData() } 
         </div>
-    )
+    );
 };
 
 export default Station;

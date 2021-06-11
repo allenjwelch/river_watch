@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Card, Col, Row } from 'antd';
 import { dateTimeFormat, timeFormat, dateFormat, timeRemaining } from '../../../utils/dateTimeFormat';
 
+import './DayHour.scss';
+
 const DayHour = ({ classname, forcast, isHourly }) => {
     console.log(forcast);
     useEffect(() => {
@@ -46,8 +48,8 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                                         <p>Feels Like:</p>
                                     </Col>
                                     <Col className='value'>
-                                        <p>{temp} &#176;F</p>
-                                        <p>{feels_like} &#176;F</p>
+                                        <p>{temp}&#176;F</p>
+                                        <p>{feels_like}&#176;F</p>
                                     </Col>
                                 </Row>
                             ) : (
@@ -58,9 +60,9 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                                         <p>Feels Like:</p>
                                     </Col>
                                     <Col className='value'>
-                                        <p>{temp.day} &#176;F</p>
-                                        <p>{temp.max} &#176;F</p>
-                                        <p>{feels_like.day} &#176;F</p>
+                                        <p>{temp.day}&#176;F</p>
+                                        <p>{temp.max}&#176;F</p>
+                                        <p>{feels_like.day}&#176;F</p>
                                     </Col>
                                 </Row>
                             )
@@ -84,11 +86,9 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                         <Row>
                             <Col className='label'>
                                 <p>Wind Speed:</p>
-                                <p>Wind Gusts:</p>
                             </Col>
                             <Col className='value'>
                                 <p>{wind_speed} mph</p>
-                                <p>{wind_gust} mph</p>
                             </Col>
                         </Row>                       
                     </Card>

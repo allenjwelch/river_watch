@@ -45,14 +45,6 @@ const Current = ({ currentForcast }) => {
                     </Row>
                     <Row>
                         <Col className='label'>
-                            <p>Wind Gusts:</p>
-                        </Col>
-                        <Col className='value'>
-                            <p>{wind_gust} mph</p>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col className='label'>
                             <p>Sunset:</p>
                         </Col>
                         <Col className='value'>

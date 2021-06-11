@@ -1,0 +1,10 @@
+.daily-forcast, .hourly-forcast {
+    display: flex;
+    width: 80vw;
+    overflow: scroll;
+
+    .ant-card {
+        padding: 0 12px;
+        min-width: 210px;
+    }
+}

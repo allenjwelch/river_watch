@@ -13,29 +13,28 @@ const { Panel } = Collapse;
 
 const CN = 'weather-info';
 
-const Weather = ({ location }) => {
-    const [forcast, setForcast] = useState(null);
+const Weather = ({ weatherData }) => {
 
     useEffect(() => {
-        const getCurrentWeather = async () => {
+        // const getCurrentWeather = async () => {
 
-            try {
-                const response = await getWeather(location);
-                if (response && response.status === 200) {
-                    console.log(response.data);
-                    setForcast(response.data)
-                }
-            } catch (err) {
-                console.warn(err);
-            }
-        }
+        //     try {
+        //         const response = await getWeather(location);
+        //         if (response && response.status === 200) {
+        //             console.log(response.data);
+        //             setForcast(response.data)
+        //         }
+        //     } catch (err) {
+        //         console.warn(err);
+        //     }
+        // }
     
-        getCurrentWeather();
+        // getCurrentWeather();
     }, []);
 
     const renderForcast = () => {
-        if (forcast) {
-            const { current, hourly, daily }= forcast;
+        if (weatherData) {
+            const { current, hourly, daily }= weatherData;
 
             return (
                 <Card 

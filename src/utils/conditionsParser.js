@@ -66,7 +66,7 @@ export const conditionsParser = (conditions, location) => {
     //     // TODO finish formatting date and add time
     // };
 
-    const riverLocation = LOCATION_DATA[location];
+    const riverLocation = LOCATION_DATA[location.river].SECTION_DATA[location.section];
     
     // const siteMap = new Map();
     const siteObj = {

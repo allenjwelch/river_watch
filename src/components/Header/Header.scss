@@ -1,0 +1,26 @@
+.header {
+   
+
+    .title-col {
+        text-align: center;
+        h3 {
+            padding-top: 18px;
+        }
+    }
+
+    .menu-col {
+        text-align: right;
+        #veggieburger {
+            display: inline-block;
+            padding: 18px;
+    
+            div {
+                width: 30px;
+                height: 30px;
+                background-color: #ccc;
+            }
+            
+        }
+    }
+
+}

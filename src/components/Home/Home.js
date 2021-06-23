@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Collapse, Spin } from 'antd';
+import { Card, Collapse, Drawer, Spin } from 'antd';
+import Header from '../Header/Header';
+import Menu from '../Menu/Menu';
 import Rating from '../Rating/Rating';
 import Station from '../Station/Station';
 import Weather from '../Weather/Weather';
 import { getConditions, getWeather } from '../../utils/axios';
 import { conditionsParser } from '../../utils/conditionsParser';
-import { calculateRating } from '../../utils/calculateRating';
-import { RIVER_LOCATIONS, LOCATION_NAMES, ERROR_MESSAGES } from '../../constants';
+import { calculateOverallRating } from '../../utils/calculateRating';
+import { RIVERS, LOCATION_NAMES, ERROR_MESSAGES, LOCATION_DATA } from '../../constants';
 
 import './Home.scss';
 
@@ -16,8 +18,14 @@ const CN = 'home-page';
 
 const Home = () => {
 
-    const [riverLocation, setRiverLocation] = useState(RIVER_LOCATIONS.CHATT_ATL);
+    const defaultLocation = {
+        river: RIVERS.CHATT,
+        section: LOCATION_DATA[RIVERS.CHATT].SECTIONS.N_ATL
+    }
+
+    const [riverLocation, setRiverLocation] = useState(defaultLocation);
     const [loading, setLoading] = useState(true);
+    const [isMenuOpen, setMenuOpen] = useState(false);
     const [rating, setRating] = useState(null);
     const [riverData, setRiverData] = useState(null);
     const [weatherData, setWeatherData] = useState(null);
@@ -54,7 +62,7 @@ const Home = () => {
 
     useEffect(() => {
         if (riverData, weatherData) {
-            const getRating = calculateRating(riverData, weatherData);
+            const getRating = calculateOverallRating(riverData, weatherData);
             setRating(getRating);
         }
 
@@ -104,10 +112,7 @@ const Home = () => {
 
     return (
         <main className={CN}>
-            <section className='title'>
-                <h2>River Watch</h2>
-                <h4>{LOCATION_NAMES[riverLocation]}</h4>
-            </section>
+            <Header riverLocation={riverLocation} isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen}/>
             <section className='info'>
                 {
                     loading
@@ -115,6 +120,21 @@ const Home = () => {
                         : renderInfoSection() 
                 }
             </section>
+            <Drawer
+                title="Set Location"
+                width={'80%'}
+                height="100%"
+                closable={true}
+                onClose={() => setMenuOpen(false)}
+                visible={isMenuOpen}
+                placement="bottom"
+            >
+                <Menu 
+                    riverLocation={riverLocation} 
+                    setRiverLocation={setRiverLocation}
+                    setMenuOpen={setMenuOpen}
+                />
+            </Drawer>
         </main>
     )
 };

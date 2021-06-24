@@ -16,55 +16,7 @@ export const conditionsParser = (conditions, location) => {
         return dateTime;
     }
 
-    // const formatDateTime = (dateTime) => {
-    //     const isoDateToLocalDate = (ISOTimeString, offsetInMinutes) => {
-    //         var newTime = new Date(ISOTimeString);
-    //         return new Date(newTime.getTime() - (offsetInMinutes * 60000));
-    //     }
-
-    //     const convertLocalDateToString = (local) => {
-    //         const localDate = local.toLocaleString();
-    //         const dateArray = localDate.replace(',', '').split(' ');
-    //         const date = dateArray[0];
-    //         let time = dateArray[1];
-    //         time = local.toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'}).toLowerCase();
-            
-    //         // let o = new Intl.DateTimeFormat('en' , {
-    //         //     dateStyle: 'long',
-    //         //     timeStyle: 'short'
-    //         // });
-    //         // console.log('test - ', o.format(local)); // "13:31 AM"
-
-    //         const period = dateArray[2].toLowerCase();
-
-    //         console.log(local);
-    //         console.log(date, time, period);
-    //         return dateArray;
-    //     };
-
-    //     // const time = dateTime.split('T')[1];
-    //     // const localDate = isoDateToLocalDate(dateTime, 0);
-    //     // const formattedDate = convertLocalDateToString(localDate.toLocalString());
-
-        
-    //     const local = isoDateToLocalDate(dateTime, 0);
-    //     let intlFormat = new Intl.DateTimeFormat('en' , {
-    //         dateStyle: 'long',
-    //         timeStyle: 'short'
-    //     });
-    //     // console.log('test - ', o.format(local)); // "13:31 AM"
-    //     // const formatted = convertLocalDateToString(local);
-    //     const formattedDate = intlFormat.format(local).replace('at ', '');
-    //     // const formattedDate = convertLocalDateToString(localDate.toLocalString());
-
-    //     // console.log(local.toLocaleString());
-    //     // console.log(new Date(dateTime).toDateString());
-    //     // console.log(new Date(dateTime).toLocaleDateString('en-US'));
-
-    //     return formattedDate;
-
-    //     // TODO finish formatting date and add time
-    // };
+   
 
     const riverLocation = LOCATION_DATA[location.river].SECTION_DATA[location.section];
     

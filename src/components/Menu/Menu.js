@@ -40,7 +40,7 @@ const Menu = ({ riverLocation, setRiverLocation, setMenuOpen }) => {
 
     console.log('riverList - ', riverList);
     console.log('sectionList - ', sectionList);
-    
+
     const setNewLocation = () => {
         if (river && section) {
             setRiverLocation({ river, section });
@@ -49,7 +49,6 @@ const Menu = ({ riverLocation, setRiverLocation, setMenuOpen }) => {
     }
 
     const renderPutinInfo = () => {
-
         const sectionData = LOCATION_DATA[river].SECTION_DATA[section];
         
         return (

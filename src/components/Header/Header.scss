@@ -1,10 +1,17 @@
 .header {
-   
+   padding: 12px;
+   box-shadow: 0 0 10px 2px #ccc;
+   position: fixed;
+   top: 0;
+   width: 100%;
+   background: #fff;
+   z-index: 1;
 
     .title-col {
         text-align: center;
-        h3 {
-            padding-top: 18px;
+        h3, h4 {
+            margin: 0;
+            line-height: 1.2;
         }
     }
 
@@ -12,12 +19,10 @@
         text-align: right;
         #veggieburger {
             display: inline-block;
-            padding: 18px;
+            padding: 4px;
     
-            div {
-                width: 30px;
-                height: 30px;
-                background-color: #ccc;
+            .anticon {
+                font-size: 24px;
             }
             
         }

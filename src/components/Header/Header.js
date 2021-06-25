@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'antd';
+import { MenuOutlined } from '@ant-design/icons';
 import { RIVERS, LOCATION_DATA, ERROR_MESSAGES } from '../../constants';
 
 import './Header.scss';
@@ -14,7 +15,7 @@ const Header = ({ riverLocation, isMenuOpen, setMenuOpen }) => (
         </Col>
         <Col span={5} className="menu-col">
             <div id="veggieburger" onClick={() => setMenuOpen(!isMenuOpen)}>
-                <div />
+                <MenuOutlined />
             </div>
         </Col>
     </Row>

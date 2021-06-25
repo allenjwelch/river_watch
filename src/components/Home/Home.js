@@ -31,6 +31,8 @@ const Home = () => {
     const [weatherData, setWeatherData] = useState(null);
 
     useEffect(() => {
+        setLoading(true);
+
         const getCurrentRiverData = async () => {
 
             try {
@@ -58,7 +60,7 @@ const Home = () => {
         getCurrentWeather();
         getCurrentRiverData();
         setLoading(false);
-    }, []);
+    }, [riverLocation]);
 
     useEffect(() => {
         if (riverData, weatherData) {

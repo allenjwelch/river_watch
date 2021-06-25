@@ -254,7 +254,7 @@ export const LOCATION_DATA = {
         }
     },
     OCMULGEE: {
-        Name: 'Ocmulgee River',
+        NAME: 'Ocmulgee River',
         SECTIONS: {
             MACON: 'MACON',
             DAMES_FERRY: 'DAMES_FERRY'

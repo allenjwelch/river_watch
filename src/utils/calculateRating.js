@@ -39,7 +39,19 @@ const formatRating = (percent) => {
 export const calculateWaterRating = (riverData) => {
     console.log('AW riverData - ', riverData);
 
-    let rating = 0;
+    //! should look into flow rate suggestions are other rivers and 
+    //! add method for applting calcs based on different locations
+
+    let riverScore = {
+        ratings: {
+            eColiScore: null,
+            flowScore: null,
+        },
+        variables: {
+            avgEColi: 'N/A',
+            avgFlowRate: 'N/A'
+        }
+    };
 
     const getValues = (value) => {
         return riverData.sites
@@ -52,46 +64,111 @@ export const calculateWaterRating = (riverData) => {
     };
 
     if (riverData) {
-
         // E Coli.
         // Low risk: E. coli ≤ 235 High risk: E. coli > 235
 
         // 0 - 470
         const eColiCount = getValues('Escherichia coli');
-        const avgEColi = eColiCount.reduce((a, b) => parseInt(a) + parseInt(b)) / eColiCount.length;
-        const eColiScore = ((470 - avgEColi) / 470) * 100;
-        console.log('AW eColiCount - ', eColiCount);
-        console.log('AW avgEColi - ', avgEColi);
-        console.log('AW eColiScore - ', eColiScore);
+        if (eColiCount.length > 0) {
+            const { ratings, variables } = riverScore;
+
+            const avgEColi = eColiCount.reduce((a, b) => parseInt(a) + parseInt(b)) / eColiCount.length;
+            const eColiScore = ((470 - avgEColi) / 470) * 100;
+            console.log('AW eColiScore - ', eColiScore);
+
+            variables.avgEColi = avgEColi;
+            ratings.eColiScore = eColiScore;
+        }
 
 
         // Height
-        const gageHeights = getValues('height');
-        console.log('AW gageHeights - ', gageHeights);
+        // const gageHeights = getValues('height');
+        // if (gageHeights.length > 0) {
+        //     console.log('AW gageHeights - ', gageHeights);
+        // }
 
         // Flow
         const flowRates = getValues('Discharge');
-        console.log('AW flowRates - ', flowRates);
+        if (flowRates.length > 0) {
+            const { ratings, variables } = riverScore;
+
+            
+            const avgFlowRate = flowRates.reduce((a, b) => parseInt(a) + parseInt(b)) / flowRates.length;
+
+            const idealFlow = 2000;
+            const fromZero = Math.abs(idealFlow - avgFlowRate);
+            if (fromZero === 0) {
+                ratings.flowScore = 100;
+            } else {
+                ratings.flowScore = (1 - (fromZero / 7500)) * 100;
+            }
+
+            variables.avgFlowRate = avgFlowRate;
+            console.log('AW avgFlowRate - ', avgFlowRate);
+            console.log('AW flowScore - ', ratings.flowScore);
+        }        
     }
 
-    return rating;
+    return riverScore;
 };
 
 export const calculateWeatherRating = (weatherData) => {
+    const weatherScore = {
+        ratings: {
+            tempScore: null,
+            conditionsScore: null,
+            percipitation: null,
+            windScore: null,
+            dayLightScore: null
+        },
+        variables: {
+            highTemp: 'N/A',
+            lowTemp: 'N/A',
+            conditions: 'N/A',
+            percipitation: 'N/A',
+            windSpeed: 'N/A',
+            dayLight: 'N/A'
+        }
+    };
 
+    return weatherScore;
 };
+
+const checkSevereWeather = (weatherData) => {
+
+    return false;
+}
 
 export const calculateOverallRating = (riverData, weatherData) => {
     const percent = 72; // testing
 
-    const waterRating = calculateWaterRating(riverData);
+    const waterRatings = calculateWaterRating(riverData);
+    const weatherRatings = calculateWeatherRating(weatherData);
+
+    const variables = { ...waterRatings.variables, ...weatherRatings.variables };
+    const ratings = { ...waterRatings.ratings, ...weatherRatings.ratings };
+
+    const scores = Object.values(ratings).filter(score => score !== null);
+    const isMissingData = Object.values(ratings).some(key => key === null);
+    const isSevereWeather = checkSevereWeather(weatherData);
+
+    const avgScore = scores.reduce((a, b) => a + b) / scores.length;
+    // Object.entries(overallRatings).map(([key, value]) => {
+
+    // })
+
+    console.log('AXW ratings - ', ratings);
+    console.log('AXW scores - ', scores);
+    console.log('AXW isMissingData - ', isMissingData);
+    console.log('AXW avgScore - ', avgScore);
     
     const rating = {
-        overall: {
-            percent,
-            ...formatRating(percent)
-        }
-        
+        percent: avgScore,
+        variables,
+        isMissingData,
+        isSevereWeather,
+        formatted: formatRating(percent)
+       
     };
 
     return rating;

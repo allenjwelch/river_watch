@@ -1,43 +1,54 @@
-import { STATION_VARIABLES } from '../constants';
+import { RATINGS } from '../constants';
+import { dateTimeFormat, timeFormat, dateFormat, timeRemaining } from './dateTimeFormat';
+
 
 const formatRating = (percent) => {
     // success exception normal active
-    if (percent > 60) {
-        if (percent >= 90) {
-            return {
-                grade: 'A',
-                status: 'success',
-                strokeColor: '#87d068'
-            };
-        } else if (percent >= 80) {
-            return {
-                grade: 'B',
-                status: 'success',
-                strokeColor: '#108ee9'
-            };
-        } else if (percent >= 70) {
-            return {
-                grade: 'C',
-                status: 'normal',
-                strokeColor: '#108ee9'
-            };
-        } else {
-            return {
-                grade: 'D',
-                status: 'exception',
-                strokeColor: '#FF4D4F'
-            };
-        }
+    if (percent >= 90) {
+        return {
+            label: 'Great',
+            status: 'success',
+            strokeColor: '#87d068'
+        };
+    } else if (percent >= 85) {
+        return {
+            label: 'Good',
+            status: 'success',
+            strokeColor: '#87d068'
+        };
+    } else if (percent >= 70) {
+        return {
+            label: 'Ok..',
+            status: 'normal',
+            strokeColor: '#108ee9'
+        };
+    } else if (percent >= 60) {
+        return {
+            label: 'Bad',
+            status: 'exception',
+            strokeColor: '#FF4D4F'
+        };
+    } else {
+        return {
+            label: 'DONT GO',
+            status: 'exception',
+            strokeColor: '#FF4D4F'
+        };
     }
-    return {
-        grade: 'F',
-        status: 'exception',
-        strokeColor: '#FF4D4F'
-    };
+};
+
+export const getRatingIcon = (score) => {
+    if (score >= 85) {
+        return RATINGS.GOOD
+    } else if (score >= 70) {
+        return RATINGS.FAIR;
+    } else {
+        return RATINGS.POOR
+    }
 };
 
 export const calculateWaterRating = (riverData) => {
-    console.log('AW riverData - ', riverData);
+    // console.log('AW riverData - ', riverData);
 
     //! should look into flow rate suggestions are other rivers and 
     //! add method for applting calcs based on different locations
@@ -73,19 +84,15 @@ export const calculateWaterRating = (riverData) => {
             const { ratings, variables } = riverScore;
 
             const avgEColi = eColiCount.reduce((a, b) => parseInt(a) + parseInt(b)) / eColiCount.length;
-            const eColiScore = ((470 - avgEColi) / 470) * 100;
-            console.log('AW eColiScore - ', eColiScore);
+            // const eColiScore = ((470 - avgEColi) / 470) * 100;
+            const eColiScore = (1 - (avgEColi / 800)) * 100;
+
+            // console.log('AW avgEColi - ', avgEColi);
+            // console.log('AW eColiScore - ', eColiScore);
 
             variables.avgEColi = avgEColi;
             ratings.eColiScore = eColiScore;
         }
-
-
-        // Height
-        // const gageHeights = getValues('height');
-        // if (gageHeights.length > 0) {
-        //     console.log('AW gageHeights - ', gageHeights);
-        // }
 
         // Flow
         const flowRates = getValues('Discharge');
@@ -104,43 +111,110 @@ export const calculateWaterRating = (riverData) => {
             }
 
             variables.avgFlowRate = avgFlowRate;
-            console.log('AW avgFlowRate - ', avgFlowRate);
-            console.log('AW flowScore - ', ratings.flowScore);
+            // console.log('AW avgFlowRate - ', avgFlowRate);
+            // console.log('AW flowScore - ', ratings.flowScore);
         }        
     }
 
     return riverScore;
 };
 
+export const getConditionsScore = (iconId) => {
+    switch (iconId) {
+        case '01d':
+            return 100;
+        case '02d':
+            return 90;
+        case '03d':
+            return 85;
+        case '04d':
+            return 75;
+        case '50d':
+            return 70;
+        case '09d':
+            return 60;
+        case '10d':
+            return 50;
+        case '11d':
+            return 20;
+        default: 
+            return 20;
+    }
+};
+
 export const calculateWeatherRating = (weatherData) => {
     const weatherScore = {
         ratings: {
+            weatherScore: null,
             tempScore: null,
             conditionsScore: null,
-            percipitation: null,
-            windScore: null,
+            precipitationScore: null,
+            // windScore: null,
             dayLightScore: null
         },
         variables: {
             highTemp: 'N/A',
             lowTemp: 'N/A',
             conditions: 'N/A',
-            percipitation: 'N/A',
-            windSpeed: 'N/A',
+            precipitation: 'N/A',
             dayLight: 'N/A'
         }
     };
+
+    if (weatherData) {
+        // console.log('AW weatherData - ', weatherData);
+        const { daily }= weatherData;
+
+        const today = Math.floor(Date.now() / 1000);
+        const currentDay = daily.filter(day => dateFormat(day.dt) === dateFormat(today));
+
+        if (currentDay.length === 1) {
+            const { ratings, variables } = weatherScore;
+            const { temp: { min, max }, sunset, weather, pop } = currentDay[0];
+            
+            // weatherScore
+            const tempScore = max;
+            const conditionsScore = getConditionsScore(weather[0].icon); 
+            ratings.tempScore = tempScore;
+            ratings.conditionsScore = conditionsScore;           
+            ratings.weatherScore = (tempScore + conditionsScore) / 2;
+
+            // precipitationScore
+            ratings.precipitationScore = (1- pop) * 100;
+
+            // dayLightScore
+            const timeRemainingVar = timeRemaining(Date.now(), sunset * 1000);
+            if (timeRemainingVar.includes('hrs')) {
+                const timeSplit = timeRemainingVar.split('hrs');
+                if (timeSplit.length > 0) {
+                const hoursRemaining = parseInt(timeSplit[0]);
+
+                    if (hoursRemaining >= 5) {
+                        ratings.dayLightScore = 100
+                    } else {
+                        ratings.dayLightScore = (hoursRemaining / 5) * 100;
+                    }
+                }
+            }
+
+            variables.highTemp = max.toFixed(0);
+            variables.lowTemp = min.toFixed(0);
+            variables.conditions = weather[0];
+            variables.precipitation = (pop * 100).toFixed(0);
+            variables.dayLight = timeFormat(sunset);
+        }
+    }
+
+    console.log('AW weatherScore - ', weatherScore);
 
     return weatherScore;
 };
 
 const checkSevereWeather = (weatherData) => {
-
     return false;
 }
 
 export const calculateOverallRating = (riverData, weatherData) => {
-    const percent = 72; // testing
 
     const waterRatings = calculateWaterRating(riverData);
     const weatherRatings = calculateWeatherRating(weatherData);
@@ -152,22 +226,20 @@ export const calculateOverallRating = (riverData, weatherData) => {
     const isMissingData = Object.values(ratings).some(key => key === null);
     const isSevereWeather = checkSevereWeather(weatherData);
 
+    // const avgScore = 80;
     const avgScore = scores.reduce((a, b) => a + b) / scores.length;
-    // Object.entries(overallRatings).map(([key, value]) => {
-
-    // })
 
     console.log('AXW ratings - ', ratings);
     console.log('AXW scores - ', scores);
-    console.log('AXW isMissingData - ', isMissingData);
     console.log('AXW avgScore - ', avgScore);
     
     const rating = {
         percent: avgScore,
+        ratings,
         variables,
         isMissingData,
         isSevereWeather,
-        formatted: formatRating(percent)
+        formatted: formatRating(avgScore)
        
     };
 

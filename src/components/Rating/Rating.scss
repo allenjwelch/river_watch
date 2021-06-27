@@ -1,0 +1,54 @@
+.rating {
+
+    .anticon {
+        font-size: 16px;
+        padding: 6px;
+        // &.anticon-question-circle {
+        //     font-size: 16px;
+        //     padding: 6px;
+        // }
+    }
+
+    .main-row {
+        padding: 0 2%;
+
+        .progress-col {
+            padding-top: 12px;
+            text-align: center;
+        }
+
+        .variables-col {
+            .variables {
+
+                .ant-col {
+                    line-height: 1;
+                }
+
+                .variable-label {
+                    margin-left: 6px;
+                    line-height: 2;
+                    vertical-align: top;
+                }
+
+                .river-img {
+                    height: 28px;
+                    padding: 6px;
+                }
+
+                .ecoli-img {
+                    height: 28px;
+                    padding: 2px;
+                }
+            }
+        }
+    }
+
+    .warning-row {
+        padding-top: 12px;
+        text-align: center;
+        .warning-msg {
+            padding-left: 6px;
+        }
+    }
+
+}

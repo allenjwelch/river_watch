@@ -41,9 +41,10 @@ const Weather = ({ weatherData }) => {
                     size="small" 
                     title='Weather Conditions'
                     className='conditions'
-                    extra={<a href="#">More</a>} 
+                    // extra={<a href="#">More</a>} 
                     bordered={false}
-                    style={{ width: '90%' }}
+                    style={{ padding: '0 5%' }}
+                    headStyle={{ textAlign: 'center', fontWeight: '700' }}
                 >
                     <Collapse 
                         defaultActiveKey={['current']} 

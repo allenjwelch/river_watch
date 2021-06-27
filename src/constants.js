@@ -1,3 +1,35 @@
+import { 
+    QuestionCircleOutlined,
+    CheckCircleOutlined,
+    CheckCircleTwoTone,
+    MinusCircleOutlined,
+    MinusCircleTwoTone,
+    CloseCircleOutlined,
+    CloseCircleTwoTone,
+    WarningOutlined,
+    WarningFilled
+} from '@ant-design/icons'
+
+import { 
+    WiDaySunny, 
+    WiDaySunnyOvercast, 
+    WiDayCloudy,
+    WiCloudy,
+    WiDayShowers,
+    WiDayRain,
+    WiDayThunderstorm,
+    WiDaySnow,
+    WiDaySprinkle,
+    WiNightClear,
+    WiNightPartlyCloudy,
+    WiNightAltCloudy,
+    WiNightAltShowers,
+    WiNightAltRain, 
+    WiNightAltThunderstorm, 
+    WiNightAltSnow,
+    WiNightAltSprinkle
+} from 'weather-icons-react';
+
 const { REACT_APP_WEATHER_KEY } = process.env;
 
 export const WATER_SERVICE_URL =  'https://waterservices.usgs.gov/nwis/iv/?format=json&sites={SITES}&parameterCd=00060,00065,99407,00011&siteStatus=all';
@@ -6,6 +38,34 @@ export const WEATHER_SERVICE_URL = `https://api.openweathermap.org/data/2.5/onec
 export const ERROR_MESSAGES = {
     NO_WATER: 'USGS Water Services not available',
     NO_WEATHER: 'Weather data not available'
+}
+
+export const RATINGS = {
+    GOOD: <CheckCircleTwoTone twoToneColor="#52C41A" />,
+    FAIR: <MinusCircleTwoTone />,
+    POOR: <CloseCircleTwoTone twoToneColor="#FF4D4F" />,
+    WARNING: <WarningFilled style={{ color: '#FAAD14' }} />
+};
+
+export const OWM_ICON_MAP = {
+    '01d': <WiDaySunny size={28} color='#000' />,
+    '01n': <WiNightClear size={28} color='#000' />,
+    '02d': <WiDaySunnyOvercast size={28} color='#000' />,
+    '02n': <WiNightPartlyCloudy size={28} color='#000' />,
+    '03d': <WiDayCloudy size={28} color='#000' />,
+    '03n': <WiNightAltCloudy size={28} color='#000' />,
+    '04d': <WiCloudy size={28} color='#000' />,
+    '04n': <WiCloudy size={28} color='#000' />,
+    '09d': <WiDayShowers size={28} color='#000' />,
+    '09n': <WiNightAltShowers size={28} color='#000' />,
+    '10d': <WiDayRain size={28} color='#000' />,
+    '10n': <WiNightAltRain size={28} color='#000' />,
+    '11d': <WiDayThunderstorm size={28} color='#000' />,
+    '11n': <WiNightAltThunderstorm size={28} color='#000' />,
+    '13d': <WiDaySnow size={28} color='#000' />,
+    '13n': <WiNightAltSnow size={28} color='#000' />,
+    '50d': <WiDaySprinkle size={28} color='#000' />,
+    '50n': <WiNightAltSprinkle size={28} color='#000' />
 }
 
 export const STATION_VARIABLES = {

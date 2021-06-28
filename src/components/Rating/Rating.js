@@ -26,7 +26,7 @@ const Rating = ({ rating, setRating }) => {
         const { percent, isMissingData, isSevereWeather, formatted, ratings, variables } = rating;
         const { label, status, strokeColor } = formatted;
         const { eColiScore, flowScore, weatherScore, precipitationScore, dayLightScore } = ratings;
-        const { avgEColi, avgFlowRate, highTemp, lowTemp, conditions, precipitation, dayLight } = variables;
+        const { avgEColi, avgFlowRate, highTemp, lowTemp, conditions, precipitation, dayLight, currentDay } = variables;
         
         const VARIABLES = {
             WEATHER: 'WEATHER',
@@ -125,6 +125,11 @@ const Rating = ({ rating, setRating }) => {
         
         return (
             <div className={CN}>
+                <Row className="date-row">
+                    <Col span={24}>
+                        <h4>{currentDay}</h4>
+                    </Col>
+                </Row>
                 <Row justify="space-between" className="main-row">
                     <Col span={12} className="progress-col">
                         <Progress 

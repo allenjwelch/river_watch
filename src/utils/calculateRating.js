@@ -197,6 +197,7 @@ export const calculateWeatherRating = (weatherData) => {
                 }
             }
 
+            variables.currentDay = dateFormat(currentDay[0].dt)
             variables.highTemp = max.toFixed(0);
             variables.lowTemp = min.toFixed(0);
             variables.conditions = weather[0];

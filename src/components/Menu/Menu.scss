@@ -1,0 +1,45 @@
+.menu {
+    .selection-row, 
+    .putins-row,
+    .btn-row {
+        margin-bottom: 24px;
+    }
+
+    .selection-row {
+        .ant-select {
+
+            .ant-select-selector {
+                border: none;
+                border-bottom: 1px solid #d9d9d9;
+            }
+
+            &.ant-select-focused {
+                .ant-select-selector {
+                    box-shadow: none;
+                    border: none;
+                    border-bottom: 1px solid #d9d9d9;
+                }
+            }
+        }
+
+        .ant-select:not(:last-child) {
+            margin-bottom: 24px;
+        }
+    }
+
+    .putins-row {
+        margin-bottom: 36px;
+    }
+
+    .btn-row {
+        .ant-col {
+            text-align: center;
+            .ant-btn {
+                width: 90%;
+                span {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

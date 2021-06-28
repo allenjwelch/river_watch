@@ -1,0 +1,33 @@
+.home-page {  
+    padding-top: 60px;
+
+    .info {
+        padding: 24px 12px;
+    }
+
+    .rating {
+        margin-bottom: 18px;
+    }
+
+    .weather-info, .water-stations {
+        margin-bottom: 8px;
+
+        .ant-collapse-item {
+            .ant-collapse-header {
+                padding: 10px;
+            }
+            .ant-collapse-content-box {
+                padding: 0 0 0 34px !important;
+            }
+        }
+
+        .ant-card {
+            .ant-card-head {
+                padding: 0;
+            }
+            .ant-card-body {
+                padding: 8px 0;
+            }
+        }
+    }
+}

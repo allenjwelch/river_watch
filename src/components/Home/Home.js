@@ -8,7 +8,7 @@ import Weather from '../Weather/Weather';
 import { getConditions, getWeather } from '../../utils/axios';
 import { conditionsParser } from '../../utils/conditionsParser';
 import { calculateOverallRating } from '../../utils/calculateRating';
-import { RIVERS, LOCATION_NAMES, ERROR_MESSAGES, LOCATION_DATA } from '../../constants';
+import { RIVERS, ERROR_MESSAGES, LOCATION_DATA } from '../../constants';
 
 import './Home.scss';
 
@@ -63,7 +63,7 @@ const Home = () => {
     }, [riverLocation]);
 
     useEffect(() => {
-        if (riverData, weatherData) {
+        if (riverData && weatherData) {
             const getRating = calculateOverallRating(riverData, weatherData);
             setRating(getRating);
         }

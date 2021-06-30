@@ -2,7 +2,6 @@ import axios from 'axios';
 import { 
     WATER_SERVICE_URL,
     WEATHER_SERVICE_URL,
-    RIVERS,
     LOCATION_DATA
 } from '../constants';
 

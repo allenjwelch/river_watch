@@ -1,12 +1,12 @@
 import { 
-    QuestionCircleOutlined,
-    CheckCircleOutlined,
+    // QuestionCircleOutlined,
+    // CheckCircleOutlined,
+    // MinusCircleOutlined,
+    // CloseCircleOutlined,
+    // WarningOutlined,
     CheckCircleTwoTone,
-    MinusCircleOutlined,
     MinusCircleTwoTone,
-    CloseCircleOutlined,
     CloseCircleTwoTone,
-    WarningOutlined,
     WarningFilled
 } from '@ant-design/icons'
 

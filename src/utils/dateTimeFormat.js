@@ -69,9 +69,8 @@ export const timeRemaining = (fromUnix, toUnix) => {
             // s = (diff % units[i].duration) + " " + units[i].label + " " + s;
             diff = Math.floor(diff / units[i].duration);
         }
-        console.log(results)
 
-        const hoursRemaining = (results.hours + (results.minutes / 60)).toFixed(2);
+        // const hoursRemaining = (results.hours + (results.minutes / 60)).toFixed(2);
         const timeRemaining = `${results.hours}hrs ${results.minutes}min`;
 
         // return `${hoursRemaining} hour(s)`;

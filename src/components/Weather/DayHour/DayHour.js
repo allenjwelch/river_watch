@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Card, Col, Row } from 'antd';
-import { dateTimeFormat, timeFormat, dateFormat, timeRemaining } from '../../../utils/dateTimeFormat';
+import { timeFormat, dateFormat } from '../../../utils/dateTimeFormat';
 
 import './DayHour.scss';
 
@@ -19,18 +19,20 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                     if (dateFormat(dt) === dateFormat(today)) {
                         return true;
                     }
+                    return false;
                 })
             }
             forcastArray = forcastArray.map(period => {
-                const { dt, temp, feels_like, clouds, pop, wind_speed, wind_gust, weather }  = period;
+                const { dt, temp, feels_like, clouds, pop, wind_speed, weather }  = period;
 
                 return (
                     <Card 
                         size="small" 
                         title={isHourly ? timeFormat(dt) : dateFormat(dt)}
-                        extra={<a href="#">More</a>} 
+                        // extra={<a href="#">More</a>} 
                         bordered={false}
                         style={{ width: 'auto' }}
+                        headStyle={{ textAlign: 'center', fontWeight: '700' }}
                     >
                         <Row>
                             <Col className='label'>

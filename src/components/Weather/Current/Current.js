@@ -7,7 +7,7 @@ const CN = 'current-forcast';
 const Current = ({ currentForcast }) => {
     const renderCurrentForcast = () => {
         if (currentForcast) {
-            const { temp, sunset, clouds, wind_speed, wind_gust, weather }  = currentForcast;
+            const { temp, sunset, clouds, wind_speed, weather }  = currentForcast;
     
             return (
                 <>

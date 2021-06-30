@@ -23,7 +23,7 @@ const Menu = ({ riverLocation, setRiverLocation, setMenuOpen }) => {
         setRiverList(defaultRivers);
         setRiver(riverLocation.river);
         setSection(riverLocation.section);
-    }, []);
+    }, [riverLocation]);
 
     useEffect(() => {
         if (river) {

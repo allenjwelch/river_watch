@@ -1,5 +1,5 @@
 import { RATINGS } from '../constants';
-import { dateTimeFormat, timeFormat, dateFormat, timeRemaining } from './dateTimeFormat';
+import { timeFormat, dateFormat, timeRemaining } from './dateTimeFormat';
 
 
 const formatRating = (percent) => {
@@ -206,8 +206,6 @@ export const calculateWeatherRating = (weatherData) => {
         }
     }
 
-    console.log('AW weatherScore - ', weatherScore);
-
     return weatherScore;
 };
 
@@ -232,7 +230,6 @@ export const calculateOverallRating = (riverData, weatherData) => {
 
     console.log('AXW ratings - ', ratings);
     console.log('AXW scores - ', scores);
-    console.log('AXW avgScore - ', avgScore);
     
     const rating = {
         percent: avgScore,

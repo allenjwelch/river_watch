@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Col, Progress, Row } from 'antd';
 import { getRatingIcon } from '../../utils/calculateRating';
 import { RATINGS, OWM_ICON_MAP } from '../../constants';
-import { 
-    QuestionCircleOutlined,
-    CheckCircleOutlined,
-    CheckCircleTwoTone,
-    MinusCircleOutlined,
-    MinusCircleTwoTone,
-    CloseCircleOutlined,
-    CloseCircleTwoTone,
-    WarningOutlined,
-    WarningFilled
-} from '@ant-design/icons'
-import { WiSunset, WiRaindrops, WiHumidity } from 'weather-icons-react';
+import { QuestionCircleOutlined } from '@ant-design/icons'
+import { WiSunset, WiHumidity } from 'weather-icons-react';
 // import ecoliIcon from 'ecoli2.png'
 
 import './Rating.scss';
@@ -24,7 +14,7 @@ const Rating = ({ rating, setRating }) => {
 
     if (rating) {
         const { percent, isMissingData, isSevereWeather, formatted, ratings, variables } = rating;
-        const { label, status, strokeColor } = formatted;
+        const { label, strokeColor } = formatted;
         const { eColiScore, flowScore, weatherScore, precipitationScore, dayLightScore } = ratings;
         const { avgEColi, avgFlowRate, highTemp, lowTemp, conditions, precipitation, dayLight, currentDay } = variables;
         
@@ -56,7 +46,7 @@ const Rating = ({ rating, setRating }) => {
             switch (variable) {
                 case VARIABLES.WEATHER: 
                     if (highTemp !== 'N/A' && lowTemp !== 'N/A' && conditions !== 'N/A' && weatherScore) {
-                        const { main, description, icon: weatherIcon } = conditions; 
+                        const { icon: weatherIcon } = conditions; 
 
                         icon = OWM_ICON_MAP[weatherIcon]; // check conditions for icon
                         value = `${highTemp}\u00B0F | ${lowTemp}\u00B0F`;
@@ -111,7 +101,7 @@ const Rating = ({ rating, setRating }) => {
             }
 
             return (
-                <Row justify="space-between">
+                <Row justify="space-between" key={variable}>
                     <Col>
                         {icon}
                         <span className="variable-label">{value}</span>
@@ -130,8 +120,8 @@ const Rating = ({ rating, setRating }) => {
                         <h4>{currentDay}</h4>
                     </Col>
                 </Row>
-                <Row justify="space-between" className="main-row">
-                    <Col span={12} className="progress-col">
+                <Row justify="center" className="main-row">
+                    <Col span={10} className="progress-col">
                         <Progress 
                             type="circle" 
                             percent={percent} 
@@ -141,7 +131,7 @@ const Rating = ({ rating, setRating }) => {
                         />
                     </Col>
 
-                    <Col span={12} className="variables-col">
+                    <Col className="variables-col">
                         <div className="variables">
                             { Object.values(VARIABLES).map(value => (
                                 renderVariableRow(value)

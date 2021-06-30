@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
-import { RIVERS, LOCATION_DATA, ERROR_MESSAGES } from '../../constants';
+import { LOCATION_DATA } from '../../constants';
 
 import './Header.scss';
 

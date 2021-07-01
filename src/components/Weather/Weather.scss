@@ -15,5 +15,19 @@
         text-align: left;
     }
 
+    .ant-tabs {
+        .ant-tabs-nav-list {
+            width: 100%;
+
+            .ant-tabs-tab {
+                width: 33%;
+                .ant-tabs-tab-btn {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
     
 }

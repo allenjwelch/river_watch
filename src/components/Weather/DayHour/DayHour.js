@@ -3,6 +3,7 @@ import { Card, Col, Row } from 'antd';
 import { RATINGS, OWM_ICON_MAP } from '../../../constants';
 import { timeFormat, dateFormat } from '../../../utils/dateTimeFormat';
 import { WiCloud, WiHumidity, WiStrongWind } from 'weather-icons-react';
+import CloudRainWind from '../CloudRainWind';
 
 import './DayHour.scss';
 
@@ -78,6 +79,8 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                                 </Row>
                             )
                         }
+
+                        {/* <CloudRainWind cloud={clouds} rain={pop} wind={wind_speed} /> */}
                         <div className="cloud-rain-wind">
                             <Row justify="center">
                                 <Col className='label'>

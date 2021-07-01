@@ -1,0 +1,31 @@
+.current-forcast {
+    text-align: center;
+
+    .weather-row {
+        svg {
+            height: 100px;
+            width: 100px;
+        }
+    }
+
+    h2 {
+        margin: 0;
+        span {
+            font-size: 16px;
+        }
+    }
+
+    .cloud-row, .wind-row {
+        .ant-col {
+            line-height: 1;
+            &.value {
+                padding-top: 6px;
+            }
+        }
+    }
+
+    .wind-row {
+        margin-top: -8px;
+    }
+
+}

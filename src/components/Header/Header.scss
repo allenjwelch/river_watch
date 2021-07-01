@@ -20,8 +20,12 @@
         text-align: right;
         #veggieburger {
             display: inline-block;
-            padding: 4px;
-    
+            padding: 4px 8px;
+            
+            img {
+                height: 24px;
+            }
+
             .anticon {
                 font-size: 24px;
             }

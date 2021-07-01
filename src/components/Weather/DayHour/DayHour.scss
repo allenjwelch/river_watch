@@ -7,7 +7,7 @@
     .ant-card {
         padding: 0 12px;
         width: auto;
-        min-width: 180px;
+        min-width: 155px;
         line-height: 1;
 
         .ant-card-body {
@@ -25,7 +25,7 @@
         }
 
         .cloud-rain-wind {
-            width: 70%;
+            // width: 70%;
             margin: 6px auto 0;
         }
     }
@@ -38,4 +38,10 @@
     /* Hide scrollbar for IE, Edge and Firefox */
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+}
+
+.hourly-forcast { 
+    .ant-card {
+        min-width: 135px;
+    }
 }

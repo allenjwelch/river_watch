@@ -20,7 +20,7 @@ const Station = ({ name, siteData }) => {
                 sampleTime = dateTimeFormat(dateTime);
 
                 return (
-                    <Row className='variable'>
+                    <Row className='variable' key={description + value}>
                         <Col>
                             <p>
                                 <span className='label'>{STATION_VARIABLES[description]}</span>

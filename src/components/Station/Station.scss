@@ -1,12 +1,17 @@
 .station-info {
 
-    .variable {
-        .label {
-            font-weight: 600;
+    .variables {
+        .variable {
+            .label {
+                font-weight: 600;
+            }
+    
+            .value {
+                padding-left: 8px;
+            }
         }
-
-        .value {
-            padding-left: 8px;
+        h5 {
+            text-align: left;
         }
     }
 }

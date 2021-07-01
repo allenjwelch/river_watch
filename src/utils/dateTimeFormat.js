@@ -35,11 +35,11 @@ export const timeFormat = (unixTime) => {
     }
 };
 
-export const dateFormat = (unixTime) => {
+export const dateFormat = (unixTime, style) => {
     let formattedDate = '0/0/00';
     
     let intlFormat = new Intl.DateTimeFormat('en' , {
-        dateStyle: 'full',
+        dateStyle: style,
     });
 
     try {

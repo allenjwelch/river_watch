@@ -7,10 +7,26 @@
 
     .selection-row {
         .ant-select {
+            // font-size: 16px;
+            :focus {
+                outline: none; 
+            }
+            :hover {
+                border: none;
+            }
+
+            &.ant-select-focused {
+                border: none;
+            }
 
             .ant-select-selector {
+                box-shadow: none !important;
                 border: none;
                 border-bottom: 1px solid #d9d9d9;
+
+                :focus {
+                    outline: none;
+                }
             }
 
             &.ant-select-focused {
@@ -42,4 +58,12 @@
             }
         }
     }
+}
+
+.ant-drawer-title {
+    text-align: center;
+}
+
+.ant-select-item, .ant-drawer-body {
+    font-size: 16px !important;
 }

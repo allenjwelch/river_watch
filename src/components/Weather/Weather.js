@@ -19,7 +19,7 @@ const Weather = ({ weatherData }) => {
 
             return (
                 <Card 
-                    size="small" 
+                    // size="small" 
                     title='Weather Conditions'
                     className='conditions'
                     // extra={<a href="#">More</a>} 

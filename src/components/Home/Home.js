@@ -76,7 +76,7 @@ const Home = () => {
                 <div className='water-stations'>
 
                     <Card 
-                        size="small" 
+                        // size="small" 
                         title='Water Stations'
                         className='stations'
                         // extra={<a href="#">More</a>} 

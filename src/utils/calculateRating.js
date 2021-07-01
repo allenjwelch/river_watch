@@ -166,7 +166,7 @@ export const calculateWeatherRating = (weatherData) => {
         const { daily }= weatherData;
 
         const today = Math.floor(Date.now() / 1000);
-        const currentDay = daily.filter(day => dateFormat(day.dt) === dateFormat(today));
+        const currentDay = daily.filter(day => dateFormat(day.dt, 'short') === dateFormat(today, 'short'));
 
         if (currentDay.length === 1) {
             const { ratings, variables } = weatherScore;
@@ -197,7 +197,7 @@ export const calculateWeatherRating = (weatherData) => {
                 }
             }
 
-            variables.currentDay = dateFormat(currentDay[0].dt)
+            variables.currentDay = dateFormat(currentDay[0].dt, 'full')
             variables.highTemp = max.toFixed(0);
             variables.lowTemp = min.toFixed(0);
             variables.conditions = weather[0];

@@ -69,7 +69,7 @@ const Menu = ({ riverLocation, setRiverLocation, setMenuOpen }) => {
 
                 <Row className="btn-row">
                     <Col span={24}>
-                        <Button type="primary" onClick={() => setNewLocation()}>Set Area</Button>
+                        <Button type="primary" size="large" style={{ width: '100%' }} onClick={() => setNewLocation()}>Set Area</Button>
                     </Col>
                 </Row>
             </>
@@ -83,6 +83,7 @@ const Menu = ({ riverLocation, setRiverLocation, setMenuOpen }) => {
                     <Select 
                         value={river} 
                         style={{ width: '100%' }} 
+                        size="large"
                         onChange={setNewRiver}
                     >
                         { riverList && riverList.map(riv => (
@@ -94,6 +95,7 @@ const Menu = ({ riverLocation, setRiverLocation, setMenuOpen }) => {
                         value={section || null}
                         placeholder="Select river section"
                         style={{ width: '100%' }} 
+                        size="large"
                         onChange={(value) => setSection(value)}
                     >
                         { sectionList && sectionList.map(sec => (

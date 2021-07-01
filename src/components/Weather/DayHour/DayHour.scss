@@ -1,10 +1,41 @@
 .daily-forcast, .hourly-forcast {
     display: flex;
-    width: 80vw;
+    // width: 80vw;
+    width: 100%;
     overflow: scroll;
 
     .ant-card {
         padding: 0 12px;
-        min-width: 210px;
+        width: auto;
+        min-width: 180px;
+        line-height: 1;
+
+        .ant-card-body {
+            text-align: center;
+        }
+
+        .weather-row {
+            // .ant-col {
+            //     text-align: center;
+            // }
+            svg {
+                height: 50px;
+                width: 50px;
+            }
+        }
+
+        .cloud-rain-wind {
+            width: 70%;
+            margin: 6px auto 0;
+        }
     }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+  
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }

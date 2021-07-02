@@ -6,6 +6,17 @@
 
     .info {
         padding: 24px 12px;
+
+        .loader {
+            position: fixed;
+            top: 20%;
+            left: 0;
+            right: 0;
+            font-size: 16px;
+            .anticon-loading {
+                font-size: 76px !important;
+            }
+        }
     }
 
     .rating {

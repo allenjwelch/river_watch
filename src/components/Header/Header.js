@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Row } from 'antd';
-import { MenuOutlined, AimOutlined, SearchOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import { LOCATION_DATA } from '../../constants';
 
 import './Header.scss';

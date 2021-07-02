@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Collapse, Drawer, Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 import Header from '../Header/Header';
 import Menu from '../Menu/Menu';
 import Rating from '../Rating/Rating';
@@ -18,6 +19,8 @@ const CN = 'home-page';
 
 const Home = () => {
 
+    const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
     const defaultLocation = {
         river: RIVERS.CHATT,
         section: LOCATION_DATA[RIVERS.CHATT].SECTIONS.N_ATL
@@ -34,7 +37,6 @@ const Home = () => {
         setLoading(true);
 
         const getCurrentRiverData = async () => {
-
             try {
                 const response = await getConditions(riverLocation);
                 if (response && response.status === 200) {
@@ -43,32 +45,31 @@ const Home = () => {
             } catch (err) {
                 console.warn(err);
             }
+            setLoading(false);
         }
 
         const getCurrentWeather = async () => {
-
             try {
                 const response = await getWeather(riverLocation);
                 if (response && response.status === 200) {
                     setWeatherData(response.data)
                 }
+                getCurrentRiverData();
             } catch (err) {
                 console.warn(err);
             }
         }
     
         getCurrentWeather();
-        getCurrentRiverData();
-        setLoading(false);
     }, [riverLocation]);
 
     useEffect(() => {
-        if (riverData && weatherData) {
+        if (!loading) {
             const getRating = calculateOverallRating(riverData, weatherData);
             setRating(getRating);
         }
 
-    }, [riverData, weatherData]);
+    }, [loading, riverData, weatherData]);
 
     const renderStationInfo = () => {
         if (riverData) {
@@ -119,7 +120,7 @@ const Home = () => {
             <section className='info'>
                 {
                     loading
-                        ? <Spin tip="Loading..." />
+                        ? <Spin indicator={antIcon} tip="Loading..." className="loader" />
                         : renderInfoSection() 
                 }
             </section>

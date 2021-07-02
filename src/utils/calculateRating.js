@@ -51,7 +51,7 @@ export const calculateWaterRating = (riverData) => {
     // console.log('AW riverData - ', riverData);
 
     //! should look into flow rate suggestions are other rivers and 
-    //! add method for applting calcs based on different locations
+    //! add method for applying calcs based on different locations
 
     let riverScore = {
         ratings: {
@@ -59,8 +59,8 @@ export const calculateWaterRating = (riverData) => {
             flowScore: null,
         },
         variables: {
-            avgEColi: 'N/A',
-            avgFlowRate: 'N/A'
+            avgEColi: null,
+            avgFlowRate: null
         }
     };
 
@@ -153,16 +153,15 @@ export const calculateWeatherRating = (weatherData) => {
             dayLightScore: null
         },
         variables: {
-            highTemp: 'N/A',
-            lowTemp: 'N/A',
-            conditions: 'N/A',
-            precipitation: 'N/A',
-            dayLight: 'N/A'
+            highTemp: null,
+            lowTemp: null,
+            conditions: null,
+            precipitation: null,
+            dayLight: null
         }
     };
 
     if (weatherData) {
-        // console.log('AW weatherData - ', weatherData);
         const { daily }= weatherData;
 
         const today = Math.floor(Date.now() / 1000);
@@ -180,7 +179,7 @@ export const calculateWeatherRating = (weatherData) => {
             ratings.weatherScore = (tempScore + conditionsScore) / 2;
 
             // precipitationScore
-            ratings.precipitationScore = (1- pop) * 100;
+            ratings.precipitationScore = (1 - pop) * 100;
 
             // dayLightScore
             const timeRemainingVar = timeRemaining(Date.now(), sunset * 1000);
@@ -228,8 +227,8 @@ export const calculateOverallRating = (riverData, weatherData) => {
     // const avgScore = 80;
     const avgScore = scores.reduce((a, b) => a + b) / scores.length;
 
-    console.log('AXW ratings - ', ratings);
-    console.log('AXW scores - ', scores);
+    // console.log('AW ratings - ', ratings);
+    // console.log('AW scores - ', scores);
     
     const rating = {
         percent: avgScore,

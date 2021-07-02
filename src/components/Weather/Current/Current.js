@@ -1,9 +1,8 @@
 import React from 'react';
 import { Col, Row } from 'antd';
 import { OWM_ICON_MAP } from '../../../constants';
-import { timeFormat, timeRemaining } from '../../../utils/dateTimeFormat';
-import CloudRainWind from '../CloudRainWind';
-import { WiCloud, WiHumidity, WiStrongWind } from 'weather-icons-react';
+import { timeRemaining } from '../../../utils/dateTimeFormat';
+// import { WiCloud, WiHumidity, WiStrongWind } from 'weather-icons-react';
 
 
 import './Current.scss';
@@ -13,12 +12,10 @@ const CN = 'current-forcast';
 const Current = ({ currentForcast }) => {
     const renderCurrentForcast = () => {
         if (currentForcast) {
-            const { temp, feels_like, sunset, clouds, pop, wind_speed, weather }  = currentForcast;
+            const { temp, feels_like, sunset, weather }  = currentForcast;
             const { icon: weatherIcon } = weather && weather[0];
 
-            console.log('currentForcast - ', currentForcast);
             const getDaylight = `${timeRemaining(Date.now(), sunset * 1000)} daylight remaining`
-            // const getTemp = `${temp.toFixed(1)}\u00B0F (feels ${feels_like.toFixed(1)}\u00B0F)`;
 
             return (
                 <>
@@ -28,9 +25,9 @@ const Current = ({ currentForcast }) => {
                     <Row>
                         <Col span={24}>
                             <h2>
-                                {temp.toFixed(1)}&#176;F
+                                {temp.toFixed(0)}&#176;F
                                 {' '}
-                                <span>(feels {feels_like.toFixed(1)}&#176;F)</span>
+                                <span>(feels {feels_like.toFixed(0)}&#176;F)</span>
                             </h2>
                         </Col>
                     </Row>

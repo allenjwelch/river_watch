@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Collapse, Tabs } from 'antd';
+import { Card, Tabs } from 'antd';
 import { ERROR_MESSAGES } from '../../constants';
 
 import Current from './Current/Current';
@@ -7,7 +7,6 @@ import DayHour from './DayHour/DayHour';
 
 import './Weather.scss';
 
-const { Panel } = Collapse;
 const { TabPane } = Tabs;
 
 const CN = 'weather-info';
@@ -48,31 +47,6 @@ const Weather = ({ weatherData }) => {
                             />
                         </TabPane>
                     </Tabs>
-
-                    {/* <Collapse 
-                        defaultActiveKey={['current']} 
-                        ghost
-                    >
-                        <Panel header="Current" key='current'>
-                            <Current currentForcast={current} />
-                        </Panel>
-                        <Panel header="Daily" key='daily'>
-                            <DayHour 
-                                classname='daily-forcast' 
-                                forcast={daily} 
-                                isHourly={false}
-                            />
-                        </Panel>
-                        <Panel header="Hourly" key='hourly'>
-                            <DayHour 
-                                classname='hourly-forcast' 
-                                forcast={hourly} 
-                                isHourly
-                            />
-                        </Panel>
-                        
-                        
-                    </Collapse> */}
                 </Card>
             );
         }

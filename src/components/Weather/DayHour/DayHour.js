@@ -1,17 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card, Col, Row } from 'antd';
-import { RATINGS, OWM_ICON_MAP } from '../../../constants';
+import { OWM_ICON_MAP } from '../../../constants';
 import { timeFormat, dateFormat } from '../../../utils/dateTimeFormat';
 import { WiCloud, WiHumidity, WiStrongWind } from 'weather-icons-react';
-import CloudRainWind from '../CloudRainWind';
 
 import './DayHour.scss';
 
 const DayHour = ({ classname, forcast, isHourly }) => {
-    console.log(forcast);
-    useEffect(() => {
 
-    }, []);
     const renderForcast = () => {
         if (forcast.length > 0) {
             let forcastArray = forcast;
@@ -26,7 +22,7 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                 })
             }
             forcastArray = forcastArray.map(period => {
-                const { dt, temp, feels_like, clouds, pop, wind_speed, weather }  = period;
+                const { dt, temp, clouds, pop, wind_speed, weather }  = period;
                 const { icon: weatherIcon } = weather && weather[0];
 
                 return (
@@ -41,46 +37,21 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                     >
                         <Row className="weather-row">
                             <Col span={24}>{OWM_ICON_MAP[weatherIcon]}</Col>
-                            {/* <Col className='label'>
-                                <p>Weather:</p>
-                            </Col>
-                            <Col className='value'>
-                                <p>{weather[0].main}</p>
-                            </Col> */}
                         </Row>
                         {
                             isHourly ? (
                                 <Row>
-                                    <Col span={24} className='value'><p>{temp.toFixed(1)}&#176;F</p></Col>
-                                    {/* <Col className='label'>
-                                        <p>Temp:</p>
-                                        <p>Feels Like:</p>
-                                    </Col>
-                                    <Col className='value'>
-                                        <p>{temp}&#176;F</p>
-                                        <p>{feels_like}&#176;F</p>
-                                    </Col> */}
+                                    <Col span={24} className='value'><p>{temp.toFixed(0)}&#176;F</p></Col>
                                 </Row>
                             ) : (
                                 <Row>
                                     <Col span={24}>
-                                        <p>{temp.max.toFixed(1)}&#176;F | {temp.min.toFixed(1)}&#176;F</p>
+                                        <p>{temp.max.toFixed(0)}&#176;F | {temp.min.toFixed(0)}&#176;F</p>
                                     </Col>
-                                    {/* <Col className='label'>
-                                        <p>Avg Temp:</p>
-                                        <p>High Temp:</p>
-                                        <p>Feels Like:</p>
-                                    </Col>
-                                    <Col className='value'>
-                                        <p>{temp.day}&#176;F</p>
-                                        <p>{temp.max}&#176;F</p>
-                                        <p>{feels_like.day}&#176;F</p>
-                                    </Col> */}
                                 </Row>
                             )
                         }
 
-                        {/* <CloudRainWind cloud={clouds} rain={pop} wind={wind_speed} /> */}
                         <div className="cloud-rain-wind">
                             <Row justify="center">
                                 <Col className='label'>
@@ -108,30 +79,6 @@ const DayHour = ({ classname, forcast, isHourly }) => {
                                 </Col>
                             </Row>
                         </div>
-                        {/* <Row>
-                            <Col className='label'>
-                                <p>Cloud Coverage:</p>
-                            </Col>
-                            <Col className='value'>
-                                <p>{clouds}%</p>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className='label'>
-                                <p>Precipitation</p>
-                            </Col>
-                            <Col className='value'>
-                                <p>{Math.floor(pop * 100)}%</p>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col className='label'>
-                                <p>Wind Speed:</p>
-                            </Col>
-                            <Col className='value'>
-                                <p>{wind_speed} mph</p>
-                            </Col>
-                        </Row>                        */}
                     </Card>
                 );
             })

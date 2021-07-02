@@ -45,7 +45,7 @@ const Rating = ({ rating, setRating }) => {
 
             switch (variable) {
                 case VARIABLES.WEATHER: 
-                    if (highTemp !== 'N/A' && lowTemp !== 'N/A' && conditions !== 'N/A' && weatherScore) {
+                    if (highTemp && lowTemp && conditions && weatherScore !== null) {
                         const { icon: weatherIcon } = conditions; 
 
                         icon = OWM_ICON_MAP[weatherIcon]; // check conditions for icon
@@ -58,8 +58,7 @@ const Rating = ({ rating, setRating }) => {
                     break;
                 case VARIABLES.PERCIP: 
                     icon = <WiHumidity size={28} color='#000' />;
-
-                    if (precipitation !== 'N/A' && precipitationScore) {
+                    if (precipitation && precipitationScore !== null) {
                         value = `${precipitation}%`;
                         rating = getRatingIcon(precipitationScore);
                     } else {
@@ -69,7 +68,7 @@ const Rating = ({ rating, setRating }) => {
                 case VARIABLES.DAY: 
                     icon = <WiSunset size={28} color='#000' />;
 
-                    if (dayLight !== 'N/A' && dayLightScore) {
+                    if (dayLight && dayLightScore !== null) {
                         value = `${dayLight}`;
                         rating = getRatingIcon(dayLightScore);
                     } else {
@@ -79,7 +78,7 @@ const Rating = ({ rating, setRating }) => {
                 case VARIABLES.FLOW: 
                 icon = <img className="river-img" src="./river2.png" alt="river flow" />
 
-                    if (avgFlowRate !== 'N/A' && flowScore) {
+                    if (avgFlowRate && flowScore !== null) {
                         value = `${avgFlowRate.toFixed(2)} ft\u00B3/s`;
                         rating = getRatingIcon(flowScore);
                     } else {
@@ -89,7 +88,7 @@ const Rating = ({ rating, setRating }) => {
                 case VARIABLES.ECOLI: 
                     icon = <img className="ecoli-img" src="./ecoli2.png" alt="ecoli" />
 
-                    if (avgEColi !== 'N/A' && eColiScore) {
+                    if (avgEColi && eColiScore !== null) {
                         value = `${avgEColi} cfu/100ml`;
                         rating = getRatingIcon(eColiScore);
                     } else {

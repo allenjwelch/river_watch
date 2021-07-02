@@ -9,8 +9,6 @@ const CN = 'station-info';
 
 const Station = ({ name, siteData }) => {
 
-    console.log(siteData);
-
     const renderStationData = () => {
         if (siteData) {
             const { variables }  = siteData;

@@ -84,19 +84,19 @@ export const CONDITION_RANGES = {
         WARNING: [0,110]
     },
     conditions: {
-        IDEAL: [],
-        SUB: [],
-        WARNING: []
+        IDEAL: [0, 10],
+        SUB: [20, 40],
+        WARNING: [50, 100]
     },
     precipitation: {
-        IDEAL: [],
-        SUB: [],
-        WARNING: []
+        IDEAL: [0, 10],
+        SUB: [11, 30],
+        WARNING: [31, 100]
     },
     dayLight: {
-        IDEAL: [],
-        SUB: [],
-        WARNING: []
+        IDEAL: [6, 10],
+        SUB: [4, 5],
+        WARNING: [0, 2]
     },
     eColi: {
         IDEAL: [0,200],

@@ -17,7 +17,7 @@ const Rating = ({ rating, setRating }) => {
         const { label, strokeColor } = formatted;
         const { eColiScore, flowScore, weatherScore, precipitationScore, dayLightScore } = ratings;
         const { avgEColi, avgFlowRate, highTemp, lowTemp, conditions, precipitation, dayLight, currentDay } = variables;
-        
+                
         const VARIABLES = {
             WEATHER: 'WEATHER',
             PERCIP: 'PERCIP',

@@ -92,7 +92,7 @@ const Home = () => {
                             {
                                 riverData.sites.map(site => (
                                     <Panel header={site.name} key={site.name}>
-                                        <Station name={site.name} siteData={site} />
+                                        <Station name={site.name} key={site.name} siteData={site} />
                                     </Panel>
                                 ))
                             }

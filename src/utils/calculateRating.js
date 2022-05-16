@@ -9,106 +9,72 @@ import { timeFormat, dateFormat, timeRemaining } from './dateTimeFormat';
 
 const formatRating = (percent) => {
     // success exception normal active
-    if (percent >= 9.7) {
-        return {
-            label: 'A+',
-            status: 'success',
-            strokeColor: '#87d068'
-        };
-    } else if (percent >= 9.3) {
-        return {
-            label: 'A',
-            status: 'success',
-            strokeColor: '#87d068'
-        };
-    } else if (percent >= 9.0) {
-        return {
-            label: 'A-',
-            status: 'success',
-            strokeColor: '#87d068'
-        };
-    } else if (percent >= 8.7) {
-        return {
-            label: 'B+',
-            status: 'success',
-            strokeColor: '#87d068'
-        };
-    } else if (percent >= 8.3) {
-        return {
-            label: 'B',
-            status: 'success',
-            strokeColor: '#87d068'
-        };
-    } else if (percent >= 8.0) {
-        return {
-            label: 'B-',
-            status: 'success',
-            strokeColor: '#87d068'
-        };
-    } else if (percent >= 7.7) {
-        return {
-            label: 'C+',
-            status: 'normal',
-            strokeColor: '#108ee9'
-        };
-    } else if (percent >= 7.3) {
-        return {
-            label: 'C',
-            status: 'normal',
-            strokeColor: '#108ee9'
-        };
-    } else if (percent >= 7.0) {
-        return {
-            label: 'C-',
-            status: 'normal',
-            strokeColor: '#108ee9'
-        };
-    } else if (percent >= 6.0) {
-        return {
-            label: 'D',
-            status: 'exception',
-            strokeColor: '#FF4D4F'
-        };
-    } else if (percent <= 5.9) {
-        return {
-            label: 'F',
-            status: 'exception',
-            strokeColor: '#FF4D4F'
-        };
+    let label;
+    let status;
+    let strokeColor;
+
+    if (percent >= 90) {
+        label = 'A';
+        status = 'success';
+        strokeColor = '#87d068';
+
+        if (percent > 97) {
+            label += '+';
+        } else if (percent < 93) {
+            label += '-';
+        } 
+
+    } else if (percent >= 80) {
+        label = 'B';
+        status = 'success';
+        strokeColor = '#87d068';
+
+        if (percent > 87) {
+            label += '+';
+        } else if (percent < 83) {
+            label += '-';
+        } 
+
+    } else if (percent >= 70) {
+        label = 'C';
+        status = 'normal';
+        strokeColor = '#108ee9';
+
+        if (percent > 77) {
+            label += '+';
+        } else if (percent < 73) {
+            label += '-';
+        } 
+
     } else {
-        return {
-            label: '?',
-            status: 'exception',
-            strokeColor: '#FF4D4F'
-        };
+        status = 'exception';
+        strokeColor = '#FF4D4F';
+
+        if (percent >= 60) {
+            label = 'D';
+        } else if (percent <= 59) {
+            label = 'F';
+        } else {
+            label = '?';
+        }
+        
+    }
+    return {
+        label,
+        status,
+        strokeColor
     }
 };
 
 export const getRatingIcon = (score) => { //!!!! FIX
-    if (score >= 6) {
+    if (score > 10) {
         return RATINGS.GOOD
-    } else if (score >= 4) {
+    } else if (score > 6) {
         return RATINGS.FAIR;
     } else {
         return RATINGS.POOR
     }
 };
-
-const getIdealRangeScore = (condition, value) => {
-    const ranges = CONDITION_RANGES[condition];
-
-    if (value > ranges.IDEAL[0] && value < ranges.IDEAL[1]) {
-        return 10;
-    }
-
-    if (value > ranges.SUB[0] && value < ranges.SUB[1]) {
-        return 0;
-    }
-
-    if (value > ranges.WARNING[0] && value < ranges.WARNING[1]) {
-        return -10;
-    }
-}
 
 export const getScoresFromRanges = (condition, value) => {
     const ranges = CONDITION_RANGES[condition];
@@ -127,7 +93,7 @@ export const getScoresFromRanges = (condition, value) => {
     let distanceToTarget;
     let range;
 
-    if (value > ranges.IDEAL[0] && value < ranges.IDEAL[1]) {
+    if (value >= ranges.IDEAL[0] && value <= ranges.IDEAL[1]) {
         ideal = 10;
 
         if (ranges.IDEAL[0] === 0) {
@@ -141,7 +107,7 @@ export const getScoresFromRanges = (condition, value) => {
 
         indivScore = getScore(distanceToTarget, range);
 
-    } else if (value > ranges.SUB[0] && value < ranges.SUB[1]) {
+    } else if (value >= ranges.SUB[0] && value <= ranges.SUB[1]) {
         ideal = 0;
         if (isByZero(ranges.SUB[0], ranges.IDEAL[1])) {
             // is by zero so no upper or lower range
@@ -154,7 +120,7 @@ export const getScoresFromRanges = (condition, value) => {
 
             let targetValue;
 
-            if (value > lowRange[0] && value < lowRange[1]) {
+            if (value >= lowRange[0] && value <= lowRange[1]) {
                 // value is in lower range
                 targetValue = lowRange[1];
                 range = getRange(lowRange[0], lowRange[1]);
@@ -169,7 +135,7 @@ export const getScoresFromRanges = (condition, value) => {
 
         indivScore = getScore(distanceToTarget, range);
 
-    } else if (value > ranges.WARNING[0] && value < ranges.WARNING[1]) {
+    } else if (value >= ranges.WARNING[0] && value <= ranges.WARNING[1]) {
         ideal = -10;
         if (isByZero(ranges.WARNING[0], ranges.SUB[1])) {
             // is by zero so no upper or lower range
@@ -182,7 +148,7 @@ export const getScoresFromRanges = (condition, value) => {
 
             let targetValue;
 
-            if (value > lowRange[0] && value < lowRange[1]) {
+            if (value >= lowRange[0] && value <= lowRange[1]) {
                 // value is in lower range
                 targetValue = lowRange[1];
                 range = getRange(lowRange[0], lowRange[1]);
@@ -408,7 +374,7 @@ export const calculateWeatherRating = (weatherData) => {
 
                 ratings.dayLightScore = calcDaylightScores.indivScore;
                 idealRange.dayLightScore = calcDaylightScores.ideal;
-
+                
                     // if (hoursRemaining >= 5) {
                     //     ratings.dayLightScore = 100
                     //     idealRange.dayLightScore = 0;
@@ -447,27 +413,44 @@ export const calculateOverallRating = (riverData, weatherData) => {
 
     const scores = Object.values(ratings).filter(score => score !== null);
     const ideals = Object.values(idealRanges).filter(score => score !== null);
-
     const isMissingData = Object.values(ratings).some(key => key === null);
+    const adjustedScores = {}
+    
+    Object.entries(ratings).map(([rKey, rValue]) => {
+        let adjustedValue;
+        Object.entries(idealRanges).forEach(([iKey, iValue]) => {
+            if (iKey === rKey) {
+                adjustedValue = rValue + iValue
+                return adjustedValue;
+            }
+        })
+        
+        adjustedScores[rKey] = adjustedValue;
+    })
+
     const isSevereWeather = checkSevereWeather(weatherData);
 
-    // const avgScore = 80;
     const avgScore = scores.reduce((a, b) => a + b) / scores.length;
     const idealScores = ideals.reduce((a, b) => a + b);
     const overallScore = (idealScores + avgScore) < 0 ? 1 : idealScores + avgScore;
+    const percent = (overallScore / (scores.length * 10)) * 100;
 
     console.log('AW ratings - ', ratings);
-    console.log('AW scores - ', scores);
     console.log('AW idealRanges - ', idealRanges);
-    console.log('AW overallScore - ', overallScore < 0 ? 0 : overallScore);
+    console.log('AW adjustedScores - ', adjustedScores);
+    // console.log('AW scores - ', scores);
+    // console.log('AW scores.length - ', scores.length);
+    // console.log('AW overallScore - ', overallScore < 0 ? 0 : overallScore);
+    console.log('AW percent - ', percent);
     
     const rating = {
-        percent: overallScore, // change name
+        percent,
         ratings,
+        adjustedScores,
         variables,
         isMissingData,
         isSevereWeather,
-        formatted: formatRating(overallScore)
+        formatted: formatRating(percent)
     };
 
     return rating;

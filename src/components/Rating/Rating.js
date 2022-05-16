@@ -13,11 +13,14 @@ const CN = 'rating';
 const Rating = ({ rating, setRating }) => {
 
     if (rating) {
-        const { percent, isMissingData, isSevereWeather, formatted, ratings, variables } = rating;
+        const { percent, isMissingData, isSevereWeather, formatted, ratings, adjustedScores, variables } = rating;
         const { label, strokeColor } = formatted;
-        const { eColiScore, flowScore, weatherScore, precipitationScore, dayLightScore } = ratings;
+        // const { eColiScore, flowScore, weatherScore, precipitationScore, dayLightScore } = ratings;
+        const { eColiScore, flowScore, tempScore, conditionsScore, precipitationScore, dayLightScore } = adjustedScores;
         const { avgEColi, avgFlowRate, highTemp, lowTemp, conditions, precipitation, dayLight, currentDay } = variables;
                 
+        console.log('adjustedScores - ', adjustedScores);
+
         const VARIABLES = {
             WEATHER: 'WEATHER',
             PERCIP: 'PERCIP',
@@ -45,8 +48,9 @@ const Rating = ({ rating, setRating }) => {
 
             switch (variable) {
                 case VARIABLES.WEATHER: 
-                    if (highTemp && lowTemp && conditions && weatherScore !== null) {
+                    if (highTemp && lowTemp && conditions && tempScore !== null && conditionsScore !== null) {
                         const { icon: weatherIcon } = conditions; 
+                        const weatherScore = (tempScore + conditionsScore) / 2;
 
                         icon = OWM_ICON_MAP[weatherIcon]; // check conditions for icon
                         value = `${highTemp}\u00B0F | ${lowTemp}\u00B0F`;

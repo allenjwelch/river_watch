@@ -81,20 +81,20 @@ export const CONDITION_RANGES = {
     temp: {
         IDEAL: [80,94],
         SUB: [74,100],
-        WARNING: [0,110]
+        WARNING: [0,120]
     },
     conditions: {
-        IDEAL: [0, 10],
-        SUB: [20, 40],
-        WARNING: [50, 100]
+        IDEAL: [0, 30],
+        SUB: [40, 50],
+        WARNING: [60, 100]
     },
     precipitation: {
-        IDEAL: [0, 10],
-        SUB: [11, 30],
-        WARNING: [31, 100]
+        IDEAL: [0, 14],
+        SUB: [15, 40],
+        WARNING: [41, 100]
     },
     dayLight: {
-        IDEAL: [6, 10],
+        IDEAL: [6, 20],
         SUB: [4, 5],
         WARNING: [0, 2]
     },
@@ -104,9 +104,9 @@ export const CONDITION_RANGES = {
         WARNING: [236,5000]
     },
     flow: {
-        IDEAL: [2000,4000],
-        SUB: [1000,5000],
-        WARNING: [0,10000]
+        IDEAL: [2000, 4000],
+        SUB: [1000, 5000],
+        WARNING: [0, 10000]
     },
 }
 

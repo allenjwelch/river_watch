@@ -85,17 +85,17 @@ export const CONDITION_RANGES = {
     },
     conditions: {
         IDEAL: [0, 30],
-        SUB: [40, 50],
-        WARNING: [60, 100]
+        SUB: [40, 60],
+        WARNING: [70, 100]
     },
     precipitation: {
-        IDEAL: [0, 14],
-        SUB: [15, 40],
+        IDEAL: [0, 20],
+        SUB: [21, 40],
         WARNING: [41, 100]
     },
     dayLight: {
         IDEAL: [6, 20],
-        SUB: [4, 5],
+        SUB: [3, 5],
         WARNING: [0, 2]
     },
     eColi: {
@@ -104,7 +104,7 @@ export const CONDITION_RANGES = {
         WARNING: [236,5000]
     },
     flow: {
-        IDEAL: [2000, 4000],
+        IDEAL: [1500, 4000],
         SUB: [1000, 5000],
         WARNING: [0, 10000]
     },

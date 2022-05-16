@@ -67,7 +67,7 @@ const formatRating = (percent) => {
 };
 
 export const getRatingIcon = (score) => { //!!!! FIX
-    if (score > 10) {
+    if (score >= 10) {
         return RATINGS.GOOD
     } else if (score > 6) {
         return RATINGS.FAIR;
@@ -213,13 +213,7 @@ export const calculateWaterRating = (riverData) => {
             const { ratings, variables, idealRange } = riverScore;
     
             const avgEColi = eColiCount.reduce((a, b) => parseInt(a) + parseInt(b)) / eColiCount.length;
-            // const eColiScore = ((470 - avgEColi) / 470) * 100;
-
-
-            const eColiScore = (1 - (avgEColi / 800)) * 100;
-    
-            console.log('AW avgEColi - ', avgEColi);
-            console.log('AW eColiScore - ', eColiScore);
+            // const eColiScore = (1 - (avgEColi / 800)) * 100;
     
             const calcEColiScores = getScoresFromRanges('eColi', avgEColi);
 
@@ -238,7 +232,6 @@ export const calculateWaterRating = (riverData) => {
          * 
          * Tubes - Paddling - Rafting - Adv Padding - Adv Rafting
          * 
-         * 
          */
 
         const flowRates = getValues('Discharge');
@@ -247,24 +240,11 @@ export const calculateWaterRating = (riverData) => {
 
             
             const avgFlowRate = flowRates.reduce((a, b) => parseInt(a) + parseInt(b)) / flowRates.length;
-
-            // const idealFlow = 2000;
-            // const fromZero = Math.abs(idealFlow - avgFlowRate);
-            // if (fromZero === 0) {
-            //     ratings.flowScore = 100;
-            // } else {
-            //     ratings.flowScore = (1 - (fromZero / 7500)) * 100;
-            // }
-
             const calcFlowScores = getScoresFromRanges('flow', avgFlowRate);
 
             variables.avgFlowRate = avgFlowRate;
             ratings.flowScore = calcFlowScores.indivScore;
             idealRange.flowScore = calcFlowScores.ideal;
-
-
-            // console.log('AW avgFlowRate - ', avgFlowRate);
-            // console.log('AW flowScore - ', ratings.flowScore);
         }  
     }
 
@@ -343,10 +323,8 @@ export const calculateWeatherRating = (weatherData) => {
                     return weatherHour > currentHour && weatherHour < sunsetHour;
                 })
 
-            console.log(hourlyRange);
             
             // weatherScore
-
             const conditionsScore = getConditionsScore(weather[0].icon); // double check
             const calcConditionScores = getScoresFromRanges('conditions', conditionsScore);
             ratings.conditionsScore = calcConditionScores.indivScore;
@@ -368,21 +346,12 @@ export const calculateWeatherRating = (weatherData) => {
             if (timeRemainingVar.includes('hrs')) {
                 const timeSplit = timeRemainingVar.split('hrs');
                 if (timeSplit.length > 0) {
-                const hoursRemaining = parseInt(timeSplit[0]);
+                    const hoursRemaining = parseInt(timeSplit[0]);
 
-                const calcDaylightScores = getScoresFromRanges('dayLight', hoursRemaining);
+                    const calcDaylightScores = getScoresFromRanges('dayLight', hoursRemaining);
 
-                ratings.dayLightScore = calcDaylightScores.indivScore;
-                idealRange.dayLightScore = calcDaylightScores.ideal;
-                
-                    // if (hoursRemaining >= 5) {
-                    //     ratings.dayLightScore = 100
-                    //     idealRange.dayLightScore = 0;
-                    // } else {
-                    //     ratings.dayLightScore = (hoursRemaining / 5) * 100;
-                    //     idealRange.dayLightScore = 0;
-
-                    // }
+                    ratings.dayLightScore = calcDaylightScores.indivScore;
+                    idealRange.dayLightScore = calcDaylightScores.ideal;
                 }
             }
 
@@ -419,13 +388,15 @@ export const calculateOverallRating = (riverData, weatherData) => {
     Object.entries(ratings).map(([rKey, rValue]) => {
         let adjustedValue;
         Object.entries(idealRanges).forEach(([iKey, iValue]) => {
-            if (iKey === rKey) {
+            if (iKey === rKey && rValue !== null && iValue !== null) {
                 adjustedValue = rValue + iValue
                 return adjustedValue;
             }
         })
         
-        adjustedScores[rKey] = adjustedValue;
+        if (rValue !== null) {
+            adjustedScores[rKey] = adjustedValue;
+        }
     })
 
     const isSevereWeather = checkSevereWeather(weatherData);
@@ -438,9 +409,9 @@ export const calculateOverallRating = (riverData, weatherData) => {
     console.log('AW ratings - ', ratings);
     console.log('AW idealRanges - ', idealRanges);
     console.log('AW adjustedScores - ', adjustedScores);
-    // console.log('AW scores - ', scores);
+    console.log('AW scores - ', scores);
     // console.log('AW scores.length - ', scores.length);
-    // console.log('AW overallScore - ', overallScore < 0 ? 0 : overallScore);
+    console.log('AW overallScore - ', overallScore < 0 ? 0 : overallScore);
     console.log('AW percent - ', percent);
     
     const rating = {

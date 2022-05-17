@@ -1,0 +1,1324 @@
+{
+    "name": "ns1:timeSeriesResponseType",
+    "declaredType": "org.cuahsi.waterml.TimeSeriesResponseType",
+    "scope": "javax.xml.bind.JAXBElement$GlobalScope",
+    "value": {
+        "queryInfo": {
+            "queryURL": "http://waterservices.usgs.gov/nwis/iv/format=json&sites=02335815,02335880,02335990,02336000&parameterCd=00011,00060,00065,99407&siteStatus=all",
+            "criteria": {
+                "locationParam": "[ALL:02335815, ALL:02335880, ALL:02335990, ALL:02336000]",
+                "variableParam": "[00011, 00060, 00065, 99407]",
+                "parameter": []
+            },
+            "note": [
+                {
+                    "value": "[ALL:02335815, ALL:02335880, ALL:02335990, ALL:02336000]",
+                    "title": "filter:sites"
+                },
+                {
+                    "value": "[mode=LATEST, modifiedSince=null]",
+                    "title": "filter:timeRange"
+                },
+                {
+                    "value": "methodIds=[ALL]",
+                    "title": "filter:methodId"
+                },
+                {
+                    "value": "2022-05-15T15:08:50.530Z",
+                    "title": "requestDT"
+                },
+                {
+                    "value": "ed53e510-d460-11ec-90f7-005056beda50",
+                    "title": "requestId"
+                },
+                {
+                    "value": "Provisional data are subject to revision. Go to http://waterdata.usgs.gov/nwis/help/?provisional for more information.",
+                    "title": "disclaimer"
+                },
+                {
+                    "value": "caas01",
+                    "title": "server"
+                }
+            ]
+        },
+        "timeSeries": [
+            {
+                "sourceInfo": {
+                    "siteName": "CHATTAHOOCHEE RIVER BELOW MORGAN FALLS DAM, GA",
+                    "siteCode": [
+                        {
+                            "value": "02335815",
+                            "network": "NWIS",
+                            "agencyCode": "USGS"
+                        }
+                    ],
+                    "timeZoneInfo": {
+                        "defaultTimeZone": {
+                            "zoneOffset": "-05:00",
+                            "zoneAbbreviation": "EST"
+                        },
+                        "daylightSavingsTimeZone": {
+                            "zoneOffset": "-04:00",
+                            "zoneAbbreviation": "EDT"
+                        },
+                        "siteUsesDaylightSavingsTime": true
+                    },
+                    "geoLocation": {
+                        "geogLocation": {
+                            "srs": "EPSG:4326",
+                            "latitude": 33.96805556,
+                            "longitude": -84.3827778
+                        },
+                        "localSiteXY": []
+                    },
+                    "note": [],
+                    "siteType": [],
+                    "siteProperty": [
+                        {
+                            "value": "ST",
+                            "name": "siteTypeCd"
+                        },
+                        {
+                            "value": "03130001",
+                            "name": "hucCd"
+                        },
+                        {
+                            "value": "13",
+                            "name": "stateCd"
+                        },
+                        {
+                            "value": "13121",
+                            "name": "countyCd"
+                        }
+                    ]
+                },
+                "variable": {
+                    "variableCode": [
+                        {
+                            "value": "00060",
+                            "network": "NWIS",
+                            "vocabulary": "NWIS:UnitValues",
+                            "variableID": 45807197,
+                            "default": true
+                        }
+                    ],
+                    "variableName": "Streamflow, ft&#179;/s",
+                    "variableDescription": "Discharge, cubic feet per second",
+                    "valueType": "Derived Value",
+                    "unit": {
+                        "unitCode": "ft3/s"
+                    },
+                    "options": {
+                        "option": [
+                            {
+                                "name": "Statistic",
+                                "optionCode": "00000"
+                            }
+                        ]
+                    },
+                    "note": [],
+                    "noDataValue": -999999.0,
+                    "variableProperty": [],
+                    "oid": "45807197"
+                },
+                "values": [
+                    {
+                        "value": [
+                            {
+                                "value": "1960",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:45:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "",
+                                "methodID": 39555
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    }
+                ],
+                "name": "USGS:02335815:00060:00000"
+            },
+            {
+                "sourceInfo": {
+                    "siteName": "CHATTAHOOCHEE RIVER BELOW MORGAN FALLS DAM, GA",
+                    "siteCode": [
+                        {
+                            "value": "02335815",
+                            "network": "NWIS",
+                            "agencyCode": "USGS"
+                        }
+                    ],
+                    "timeZoneInfo": {
+                        "defaultTimeZone": {
+                            "zoneOffset": "-05:00",
+                            "zoneAbbreviation": "EST"
+                        },
+                        "daylightSavingsTimeZone": {
+                            "zoneOffset": "-04:00",
+                            "zoneAbbreviation": "EDT"
+                        },
+                        "siteUsesDaylightSavingsTime": true
+                    },
+                    "geoLocation": {
+                        "geogLocation": {
+                            "srs": "EPSG:4326",
+                            "latitude": 33.96805556,
+                            "longitude": -84.3827778
+                        },
+                        "localSiteXY": []
+                    },
+                    "note": [],
+                    "siteType": [],
+                    "siteProperty": [
+                        {
+                            "value": "ST",
+                            "name": "siteTypeCd"
+                        },
+                        {
+                            "value": "03130001",
+                            "name": "hucCd"
+                        },
+                        {
+                            "value": "13",
+                            "name": "stateCd"
+                        },
+                        {
+                            "value": "13121",
+                            "name": "countyCd"
+                        }
+                    ]
+                },
+                "variable": {
+                    "variableCode": [
+                        {
+                            "value": "00065",
+                            "network": "NWIS",
+                            "vocabulary": "NWIS:UnitValues",
+                            "variableID": 45807202,
+                            "default": true
+                        }
+                    ],
+                    "variableName": "Gage height, ft",
+                    "variableDescription": "Gage height, feet",
+                    "valueType": "Derived Value",
+                    "unit": {
+                        "unitCode": "ft"
+                    },
+                    "options": {
+                        "option": [
+                            {
+                                "name": "Statistic",
+                                "optionCode": "00000"
+                            }
+                        ]
+                    },
+                    "note": [],
+                    "noDataValue": -999999.0,
+                    "variableProperty": [],
+                    "oid": "45807202"
+                },
+                "values": [
+                    {
+                        "value": [
+                            {
+                                "value": "812.12",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:45:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "",
+                                "methodID": 39554
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    }
+                ],
+                "name": "USGS:02335815:00065:00000"
+            },
+            {
+                "sourceInfo": {
+                    "siteName": "CHATT R AT POWERS FY & I-285 NR ATLANTA, GA",
+                    "siteCode": [
+                        {
+                            "value": "02335880",
+                            "network": "NWIS",
+                            "agencyCode": "USGS"
+                        }
+                    ],
+                    "timeZoneInfo": {
+                        "defaultTimeZone": {
+                            "zoneOffset": "-05:00",
+                            "zoneAbbreviation": "EST"
+                        },
+                        "daylightSavingsTimeZone": {
+                            "zoneOffset": "-04:00",
+                            "zoneAbbreviation": "EDT"
+                        },
+                        "siteUsesDaylightSavingsTime": true
+                    },
+                    "geoLocation": {
+                        "geogLocation": {
+                            "srs": "EPSG:4326",
+                            "latitude": 33.9019722,
+                            "longitude": -84.4430278
+                        },
+                        "localSiteXY": []
+                    },
+                    "note": [],
+                    "siteType": [],
+                    "siteProperty": [
+                        {
+                            "value": "ST",
+                            "name": "siteTypeCd"
+                        },
+                        {
+                            "value": "03130001",
+                            "name": "hucCd"
+                        },
+                        {
+                            "value": "13",
+                            "name": "stateCd"
+                        },
+                        {
+                            "value": "13121",
+                            "name": "countyCd"
+                        }
+                    ]
+                },
+                "variable": {
+                    "variableCode": [
+                        {
+                            "value": "00060",
+                            "network": "NWIS",
+                            "vocabulary": "NWIS:UnitValues",
+                            "variableID": 45807197,
+                            "default": true
+                        }
+                    ],
+                    "variableName": "Streamflow, ft&#179;/s",
+                    "variableDescription": "Discharge, cubic feet per second",
+                    "valueType": "Derived Value",
+                    "unit": {
+                        "unitCode": "ft3/s"
+                    },
+                    "options": {
+                        "option": [
+                            {
+                                "name": "Statistic",
+                                "optionCode": "00000"
+                            }
+                        ]
+                    },
+                    "note": [],
+                    "noDataValue": -999999.0,
+                    "variableProperty": [],
+                    "oid": "45807197"
+                },
+                "values": [
+                    {
+                        "value": [
+                            {
+                                "value": "1980",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:30:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "",
+                                "methodID": 243628
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    }
+                ],
+                "name": "USGS:02335880:00060:00000"
+            },
+            {
+                "sourceInfo": {
+                    "siteName": "CHATT R AT POWERS FY & I-285 NR ATLANTA, GA",
+                    "siteCode": [
+                        {
+                            "value": "02335880",
+                            "network": "NWIS",
+                            "agencyCode": "USGS"
+                        }
+                    ],
+                    "timeZoneInfo": {
+                        "defaultTimeZone": {
+                            "zoneOffset": "-05:00",
+                            "zoneAbbreviation": "EST"
+                        },
+                        "daylightSavingsTimeZone": {
+                            "zoneOffset": "-04:00",
+                            "zoneAbbreviation": "EDT"
+                        },
+                        "siteUsesDaylightSavingsTime": true
+                    },
+                    "geoLocation": {
+                        "geogLocation": {
+                            "srs": "EPSG:4326",
+                            "latitude": 33.9019722,
+                            "longitude": -84.4430278
+                        },
+                        "localSiteXY": []
+                    },
+                    "note": [],
+                    "siteType": [],
+                    "siteProperty": [
+                        {
+                            "value": "ST",
+                            "name": "siteTypeCd"
+                        },
+                        {
+                            "value": "03130001",
+                            "name": "hucCd"
+                        },
+                        {
+                            "value": "13",
+                            "name": "stateCd"
+                        },
+                        {
+                            "value": "13121",
+                            "name": "countyCd"
+                        }
+                    ]
+                },
+                "variable": {
+                    "variableCode": [
+                        {
+                            "value": "00065",
+                            "network": "NWIS",
+                            "vocabulary": "NWIS:UnitValues",
+                            "variableID": 45807202,
+                            "default": true
+                        }
+                    ],
+                    "variableName": "Gage height, ft",
+                    "variableDescription": "Gage height, feet",
+                    "valueType": "Derived Value",
+                    "unit": {
+                        "unitCode": "ft"
+                    },
+                    "options": {
+                        "option": [
+                            {
+                                "name": "Statistic",
+                                "optionCode": "00000"
+                            }
+                        ]
+                    },
+                    "note": [],
+                    "noDataValue": -999999.0,
+                    "variableProperty": [],
+                    "oid": "45807202"
+                },
+                "values": [
+                    {
+                        "value": [
+                            {
+                                "value": "4.42",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:30:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "",
+                                "methodID": 39567
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    }
+                ],
+                "name": "USGS:02335880:00065:00000"
+            },
+            {
+                "sourceInfo": {
+                    "siteName": "CHATT R AT POWERS FY & I-285 NR ATLANTA, GA",
+                    "siteCode": [
+                        {
+                            "value": "02335880",
+                            "network": "NWIS",
+                            "agencyCode": "USGS"
+                        }
+                    ],
+                    "timeZoneInfo": {
+                        "defaultTimeZone": {
+                            "zoneOffset": "-05:00",
+                            "zoneAbbreviation": "EST"
+                        },
+                        "daylightSavingsTimeZone": {
+                            "zoneOffset": "-04:00",
+                            "zoneAbbreviation": "EDT"
+                        },
+                        "siteUsesDaylightSavingsTime": true
+                    },
+                    "geoLocation": {
+                        "geogLocation": {
+                            "srs": "EPSG:4326",
+                            "latitude": 33.9019722,
+                            "longitude": -84.4430278
+                        },
+                        "localSiteXY": []
+                    },
+                    "note": [],
+                    "siteType": [],
+                    "siteProperty": [
+                        {
+                            "value": "ST",
+                            "name": "siteTypeCd"
+                        },
+                        {
+                            "value": "03130001",
+                            "name": "hucCd"
+                        },
+                        {
+                            "value": "13",
+                            "name": "stateCd"
+                        },
+                        {
+                            "value": "13121",
+                            "name": "countyCd"
+                        }
+                    ]
+                },
+                "variable": {
+                    "variableCode": [
+                        {
+                            "value": "99407",
+                            "network": "NWIS",
+                            "vocabulary": "NWIS:UnitValues",
+                            "variableID": 54390670,
+                            "default": true
+                        }
+                    ],
+                    "variableName": "Escherichia coli, estimated by regression equation, water, colonies per 100 milliliters",
+                    "variableDescription": "Escherichia coli, estimated by regression equation, water, colonies per 100 milliliters",
+                    "valueType": "Derived Value",
+                    "unit": {
+                        "unitCode": "cfu/100ml"
+                    },
+                    "options": {
+                        "option": [
+                            {
+                                "name": "Statistic",
+                                "optionCode": "00000"
+                            }
+                        ]
+                    },
+                    "note": [],
+                    "noDataValue": -999999.0,
+                    "variableProperty": [],
+                    "oid": "54390670"
+                },
+                "values": [
+                    {
+                        "value": [
+                            {
+                                "value": "34",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:00:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "",
+                                "methodID": 266081
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    },
+                    {
+                        "value": [
+                            {
+                                "value": "17",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:00:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "[-1 Std Deviation Interval]",
+                                "methodID": 267714
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    },
+                    {
+                        "value": [
+                            {
+                                "value": "8.3",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:00:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "[Lower 95% Prediction Interval]",
+                                "methodID": 267715
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    },
+                    {
+                        "value": [
+                            {
+                                "value": "70",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:00:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "[+1 Std Deviation Interval]",
+                                "methodID": 267716
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    },
+                    {
+                        "value": [
+                            {
+                                "value": "140",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:00:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "[Upper 95% Prediction Interval]",
+                                "methodID": 267717
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    }
+                ],
+                "name": "USGS:02335880:99407:00000"
+            },
+            {
+                "sourceInfo": {
+                    "siteName": "CHATTAHOOCHEE RIVER AT US 41, AT ATLANTA, GA",
+                    "siteCode": [
+                        {
+                            "value": "02335990",
+                            "network": "NWIS",
+                            "agencyCode": "USGS"
+                        }
+                    ],
+                    "timeZoneInfo": {
+                        "defaultTimeZone": {
+                            "zoneOffset": "-05:00",
+                            "zoneAbbreviation": "EST"
+                        },
+                        "daylightSavingsTimeZone": {
+                            "zoneOffset": "-04:00",
+                            "zoneAbbreviation": "EDT"
+                        },
+                        "siteUsesDaylightSavingsTime": true
+                    },
+                    "geoLocation": {
+                        "geogLocation": {
+                            "srs": "EPSG:4326",
+                            "latitude": 33.86766667,
+                            "longitude": -84.4541111
+                        },
+                        "localSiteXY": []
+                    },
+                    "note": [],
+                    "siteType": [],
+                    "siteProperty": [
+                        {
+                            "value": "ST",
+                            "name": "siteTypeCd"
+                        },
+                        {
+                            "value": "03130001",
+                            "name": "hucCd"
+                        },
+                        {
+                            "value": "13",
+                            "name": "stateCd"
+                        },
+                        {
+                            "value": "13121",
+                            "name": "countyCd"
+                        }
+                    ]
+                },
+                "variable": {
+                    "variableCode": [
+                        {
+                            "value": "00065",
+                            "network": "NWIS",
+                            "vocabulary": "NWIS:UnitValues",
+                            "variableID": 45807202,
+                            "default": true
+                        }
+                    ],
+                    "variableName": "Gage height, ft",
+                    "variableDescription": "Gage height, feet",
+                    "valueType": "Derived Value",
+                    "unit": {
+                        "unitCode": "ft"
+                    },
+                    "options": {
+                        "option": [
+                            {
+                                "name": "Statistic",
+                                "optionCode": "00000"
+                            }
+                        ]
+                    },
+                    "note": [],
+                    "noDataValue": -999999.0,
+                    "variableProperty": [],
+                    "oid": "45807202"
+                },
+                "values": [
+                    {
+                        "value": [
+                            {
+                                "value": "5.05",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:45:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "",
+                                "methodID": 39577
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    }
+                ],
+                "name": "USGS:02335990:00065:00000"
+            },
+            {
+                "sourceInfo": {
+                    "siteName": "CHATTAHOOCHEE RIVER AT ATLANTA, GA",
+                    "siteCode": [
+                        {
+                            "value": "02336000",
+                            "network": "NWIS",
+                            "agencyCode": "USGS"
+                        }
+                    ],
+                    "timeZoneInfo": {
+                        "defaultTimeZone": {
+                            "zoneOffset": "-05:00",
+                            "zoneAbbreviation": "EST"
+                        },
+                        "daylightSavingsTimeZone": {
+                            "zoneOffset": "-04:00",
+                            "zoneAbbreviation": "EDT"
+                        },
+                        "siteUsesDaylightSavingsTime": true
+                    },
+                    "geoLocation": {
+                        "geogLocation": {
+                            "srs": "EPSG:4326",
+                            "latitude": 33.85916667,
+                            "longitude": -84.4544444
+                        },
+                        "localSiteXY": []
+                    },
+                    "note": [],
+                    "siteType": [],
+                    "siteProperty": [
+                        {
+                            "value": "ST",
+                            "name": "siteTypeCd"
+                        },
+                        {
+                            "value": "03130001",
+                            "name": "hucCd"
+                        },
+                        {
+                            "value": "13",
+                            "name": "stateCd"
+                        },
+                        {
+                            "value": "13121",
+                            "name": "countyCd"
+                        }
+                    ]
+                },
+                "variable": {
+                    "variableCode": [
+                        {
+                            "value": "00060",
+                            "network": "NWIS",
+                            "vocabulary": "NWIS:UnitValues",
+                            "variableID": 45807197,
+                            "default": true
+                        }
+                    ],
+                    "variableName": "Streamflow, ft&#179;/s",
+                    "variableDescription": "Discharge, cubic feet per second",
+                    "valueType": "Derived Value",
+                    "unit": {
+                        "unitCode": "ft3/s"
+                    },
+                    "options": {
+                        "option": [
+                            {
+                                "name": "Statistic",
+                                "optionCode": "00000"
+                            }
+                        ]
+                    },
+                    "note": [],
+                    "noDataValue": -999999.0,
+                    "variableProperty": [],
+                    "oid": "45807197"
+                },
+                "values": [
+                    {
+                        "value": [
+                            {
+                                "value": "1610",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:45:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "",
+                                "methodID": 186397
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    }
+                ],
+                "name": "USGS:02336000:00060:00000"
+            },
+            {
+                "sourceInfo": {
+                    "siteName": "CHATTAHOOCHEE RIVER AT ATLANTA, GA",
+                    "siteCode": [
+                        {
+                            "value": "02336000",
+                            "network": "NWIS",
+                            "agencyCode": "USGS"
+                        }
+                    ],
+                    "timeZoneInfo": {
+                        "defaultTimeZone": {
+                            "zoneOffset": "-05:00",
+                            "zoneAbbreviation": "EST"
+                        },
+                        "daylightSavingsTimeZone": {
+                            "zoneOffset": "-04:00",
+                            "zoneAbbreviation": "EDT"
+                        },
+                        "siteUsesDaylightSavingsTime": true
+                    },
+                    "geoLocation": {
+                        "geogLocation": {
+                            "srs": "EPSG:4326",
+                            "latitude": 33.85916667,
+                            "longitude": -84.4544444
+                        },
+                        "localSiteXY": []
+                    },
+                    "note": [],
+                    "siteType": [],
+                    "siteProperty": [
+                        {
+                            "value": "ST",
+                            "name": "siteTypeCd"
+                        },
+                        {
+                            "value": "03130001",
+                            "name": "hucCd"
+                        },
+                        {
+                            "value": "13",
+                            "name": "stateCd"
+                        },
+                        {
+                            "value": "13121",
+                            "name": "countyCd"
+                        }
+                    ]
+                },
+                "variable": {
+                    "variableCode": [
+                        {
+                            "value": "00065",
+                            "network": "NWIS",
+                            "vocabulary": "NWIS:UnitValues",
+                            "variableID": 45807202,
+                            "default": true
+                        }
+                    ],
+                    "variableName": "Gage height, ft",
+                    "variableDescription": "Gage height, feet",
+                    "valueType": "Derived Value",
+                    "unit": {
+                        "unitCode": "ft"
+                    },
+                    "options": {
+                        "option": [
+                            {
+                                "name": "Statistic",
+                                "optionCode": "00000"
+                            }
+                        ]
+                    },
+                    "note": [],
+                    "noDataValue": -999999.0,
+                    "variableProperty": [],
+                    "oid": "45807202"
+                },
+                "values": [
+                    {
+                        "value": [
+                            {
+                                "value": "3.54",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:45:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "",
+                                "methodID": 186396
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    }
+                ],
+                "name": "USGS:02336000:00065:00000"
+            },
+            {
+                "sourceInfo": {
+                    "siteName": "CHATTAHOOCHEE RIVER AT ATLANTA, GA",
+                    "siteCode": [
+                        {
+                            "value": "02336000",
+                            "network": "NWIS",
+                            "agencyCode": "USGS"
+                        }
+                    ],
+                    "timeZoneInfo": {
+                        "defaultTimeZone": {
+                            "zoneOffset": "-05:00",
+                            "zoneAbbreviation": "EST"
+                        },
+                        "daylightSavingsTimeZone": {
+                            "zoneOffset": "-04:00",
+                            "zoneAbbreviation": "EDT"
+                        },
+                        "siteUsesDaylightSavingsTime": true
+                    },
+                    "geoLocation": {
+                        "geogLocation": {
+                            "srs": "EPSG:4326",
+                            "latitude": 33.85916667,
+                            "longitude": -84.4544444
+                        },
+                        "localSiteXY": []
+                    },
+                    "note": [],
+                    "siteType": [],
+                    "siteProperty": [
+                        {
+                            "value": "ST",
+                            "name": "siteTypeCd"
+                        },
+                        {
+                            "value": "03130001",
+                            "name": "hucCd"
+                        },
+                        {
+                            "value": "13",
+                            "name": "stateCd"
+                        },
+                        {
+                            "value": "13121",
+                            "name": "countyCd"
+                        }
+                    ]
+                },
+                "variable": {
+                    "variableCode": [
+                        {
+                            "value": "99407",
+                            "network": "NWIS",
+                            "vocabulary": "NWIS:UnitValues",
+                            "variableID": 54390670,
+                            "default": true
+                        }
+                    ],
+                    "variableName": "Escherichia coli, estimated by regression equation, water, colonies per 100 milliliters",
+                    "variableDescription": "Escherichia coli, estimated by regression equation, water, colonies per 100 milliliters",
+                    "valueType": "Derived Value",
+                    "unit": {
+                        "unitCode": "cfu/100ml"
+                    },
+                    "options": {
+                        "option": [
+                            {
+                                "name": "Statistic",
+                                "optionCode": "00000"
+                            }
+                        ]
+                    },
+                    "note": [],
+                    "noDataValue": -999999.0,
+                    "variableProperty": [],
+                    "oid": "54390670"
+                },
+                "values": [
+                    {
+                        "value": [
+                            {
+                                "value": "82",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:30:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "",
+                                "methodID": 266175
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    },
+                    {
+                        "value": [
+                            {
+                                "value": "41",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:30:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "[-1 Std Deviation Interval]",
+                                "methodID": 267718
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    },
+                    {
+                        "value": [
+                            {
+                                "value": "160",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:30:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "[+1 Std Deviation Interval]",
+                                "methodID": 267719
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    },
+                    {
+                        "value": [
+                            {
+                                "value": "22",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:30:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "[Lower 95% Prediction Interval]",
+                                "methodID": 267720
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    },
+                    {
+                        "value": [
+                            {
+                                "value": "310",
+                                "qualifiers": [
+                                    "P"
+                                ],
+                                "dateTime": "2022-05-15T10:30:00.000-04:00"
+                            }
+                        ],
+                        "qualifier": [
+                            {
+                                "qualifierCode": "P",
+                                "qualifierDescription": "Provisional data subject to revision.",
+                                "qualifierID": 0,
+                                "network": "NWIS",
+                                "vocabulary": "uv_rmk_cd"
+                            }
+                        ],
+                        "qualityControlLevel": [],
+                        "method": [
+                            {
+                                "methodDescription": "[Upper 95% Prediction Interval]",
+                                "methodID": 267721
+                            }
+                        ],
+                        "source": [],
+                        "offset": [],
+                        "sample": [],
+                        "censorCode": []
+                    }
+                ],
+                "name": "USGS:02336000:99407:00000"
+            }
+        ]
+    },
+    "nil": false,
+    "globalScope": true,
+    "typeSubstituted": false
+}

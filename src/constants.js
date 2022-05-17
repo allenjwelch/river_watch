@@ -32,7 +32,15 @@ import {
 
 const { REACT_APP_WEATHER_KEY } = process.env;
 
-export const WATER_SERVICE_URL =  'https://waterservices.usgs.gov/nwis/iv/?format=json&sites={SITES}&parameterCd=00060,00065,99407,00011&siteStatus=all';
+const PARAM_CDS = {
+    TEMP: '00011',
+    DISCHARGE: '00060',
+    GAGE_HEIGHT: '00065',
+    ECOLI: '99407'
+}
+
+export const WATER_SERVICE_URL =  `https://waterservices.usgs.gov/nwis/iv/?format=json&sites={SITES}&parameterCd=${PARAM_CDS.TEMP},${PARAM_CDS.DISCHARGE},${PARAM_CDS.GAGE_HEIGHT},${PARAM_CDS.ECOLI}&siteStatus=all`;
+
 export const WEATHER_SERVICE_URL = `https://api.openweathermap.org/data/2.5/onecall?lat={LAT}&lon={LON}&units=imperial&exclude=minute&appid=${REACT_APP_WEATHER_KEY}`;
 
 export const ERROR_MESSAGES = {
@@ -66,6 +74,40 @@ export const OWM_ICON_MAP = {
     '13n': <WiNightAltSnow size={28} color='#000' />,
     '50d': <WiDaySprinkle size={28} color='#000' />,
     '50n': <WiNightAltSprinkle size={28} color='#000' />
+}
+
+export const CONDITION_RANGES = {
+    // output: ['IDEAL', 'SUB', 'WARNING']
+    temp: {
+        IDEAL: [80,94],
+        SUB: [74,100],
+        WARNING: [0,120]
+    },
+    conditions: {
+        IDEAL: [0, 30],
+        SUB: [40, 60],
+        WARNING: [70, 100]
+    },
+    precipitation: {
+        IDEAL: [0, 20],
+        SUB: [21, 40],
+        WARNING: [41, 100]
+    },
+    dayLight: {
+        IDEAL: [6, 20],
+        SUB: [3, 5],
+        WARNING: [0, 2]
+    },
+    eColi: {
+        IDEAL: [0,200],
+        SUB: [201,235],
+        WARNING: [236,5000]
+    },
+    flow: {
+        IDEAL: [1000, 4000],
+        SUB: [1000, 5000],
+        WARNING: [0, 10000]
+    },
 }
 
 export const STATION_VARIABLES = {

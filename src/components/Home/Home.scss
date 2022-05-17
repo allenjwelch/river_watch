@@ -1,6 +1,6 @@
 .home-page {  
     padding-top: 65px;
-    max-width: 700px;
+    width: 100%;
     text-align: center;
     margin: 0 auto;
 
@@ -9,9 +9,10 @@
 
         .loader {
             position: fixed;
-            top: 20%;
+            top: 50%;
             left: 0;
             right: 0;
+            transform: translateY(-50%);
             font-size: 16px;
             .anticon-loading {
                 font-size: 76px !important;
@@ -54,6 +55,23 @@
     .water-stations {
         .ant-collapse-content-box {
             padding: 0 0 0 36px !important;
+        }
+    }
+
+    footer {
+        text-align: right;
+        padding-top: 6px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #fff;
+        display: flex;
+        justify-content: space-between;
+        h4 {
+            margin: 0;
+            padding: 4px 8px;
+            font-size: 12px;
+
         }
     }
 }

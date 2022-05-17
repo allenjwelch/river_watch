@@ -92,7 +92,7 @@ const Home = () => {
                             {
                                 riverData.sites.map(site => (
                                     <Panel header={site.name} key={site.name}>
-                                        <Station name={site.name} siteData={site} />
+                                        <Station name={site.name} key={site.name} siteData={site} />
                                     </Panel>
                                 ))
                             }
@@ -139,6 +139,10 @@ const Home = () => {
                     setMenuOpen={setMenuOpen}
                 />
             </Drawer>
+            <footer>
+                <h4>v0.2.0</h4>
+                <h4>Allen Welch 2021</h4>
+            </footer>
         </main>
     )
 };

@@ -104,7 +104,7 @@ export const CONDITION_RANGES = {
         WARNING: [236,5000]
     },
     flow: {
-        IDEAL: [1500, 4000],
+        IDEAL: [1000, 4000],
         SUB: [1000, 5000],
         WARNING: [0, 10000]
     },

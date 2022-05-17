@@ -37,13 +37,12 @@ Check relevant conditions for a day on the river. Pulls API data from USGS Water
 - Test design concept
 
 #### v0.2.0
-- ...
+- Updates rating logic with ideal, sub, and warning ranges  
+- Updates weather specific logic to use percipitation from hourly data beyond current time
 
 #### Upcoming
-- Update rating logic
 - Additional links for more information
 - ratings key to better explain the rating system
-- update weather logic to use temperature and percipitation from hourly data beyond current time
 - update user message on addtional info needed
 - add messages when conditions are not within ideal range
 - add toggle for different river acitivities to adjust ideal flow rate range

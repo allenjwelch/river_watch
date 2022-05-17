@@ -139,6 +139,10 @@ const Home = () => {
                     setMenuOpen={setMenuOpen}
                 />
             </Drawer>
+            <footer>
+                <h4>v0.2.0</h4>
+                <h4>Allen Welch 2021</h4>
+            </footer>
         </main>
     )
 };

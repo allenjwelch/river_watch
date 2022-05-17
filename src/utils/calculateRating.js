@@ -9,54 +9,54 @@ import { timeFormat, dateFormat, timeRemaining } from './dateTimeFormat';
 
 const formatRating = (percent) => {
     // success exception normal active
-    let label;
+    const label = (percent / 10).toFixed(1, 10);
     let status;
     let strokeColor;
 
-    if (percent >= 90) {
-        label = 'A';
+    if (percent >= 85) {
+        // label = 'A';
         status = 'success';
         strokeColor = '#87d068';
 
-        if (percent > 97) {
-            label += '+';
-        } else if (percent < 93) {
-            label += '-';
-        } 
+        // if (percent > 97) {
+        //     label += '+';
+        // } else if (percent < 93) {
+        //     label += '-';
+        // } 
 
-    } else if (percent >= 80) {
-        label = 'B';
-        status = 'success';
-        strokeColor = '#87d068';
+    // } else if (percent >= 80) {
+    //     label = 'B';
+    //     status = 'success';
+    //     strokeColor = '#87d068';
 
-        if (percent > 87) {
-            label += '+';
-        } else if (percent < 83) {
-            label += '-';
-        } 
+    //     if (percent > 87) {
+    //         label += '+';
+    //     } else if (percent < 83) {
+    //         label += '-';
+    //     } 
 
     } else if (percent >= 70) {
-        label = 'C';
+        // label = 'C';
         status = 'normal';
         strokeColor = '#108ee9';
 
-        if (percent > 77) {
-            label += '+';
-        } else if (percent < 73) {
-            label += '-';
-        } 
+        // if (percent > 77) {
+        //     label += '+';
+        // } else if (percent < 73) {
+        //     label += '-';
+        // } 
 
     } else {
         status = 'exception';
         strokeColor = '#FF4D4F';
 
-        if (percent >= 60) {
-            label = 'D';
-        } else if (percent <= 59) {
-            label = 'F';
-        } else {
-            label = '?';
-        }
+        // if (percent >= 60) {
+        //     label = 'D';
+        // } else if (percent <= 59) {
+        //     label = 'F';
+        // } else {
+        //     label = '?';
+        // }
         
     }
     return {
@@ -404,7 +404,7 @@ export const calculateOverallRating = (riverData, weatherData) => {
     const avgScore = scores.reduce((a, b) => a + b) / scores.length;
     const idealScores = ideals.reduce((a, b) => a + b);
     const overallScore = (idealScores + avgScore) < 0 ? 1 : idealScores + avgScore;
-    const percent = (overallScore / (scores.length * 10)) * 100;
+    const percent = (overallScore / ((scores.length + 1) * 10)) * 100;
 
     console.log('AW ratings - ', ratings);
     console.log('AW idealRanges - ', idealRanges);

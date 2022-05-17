@@ -14,6 +14,10 @@ Check relevant conditions for a day on the river. Pulls API data from USGS Water
 
 
 ### Deployment
+1 - [Install Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)  
+2- `heroku git:remote -a river-watch` - Add heroku git remote  
+3- `git push heroku master` - Deploy from command line
+  
 [http://river-watch.herokuapp.com/](http://river-watch.herokuapp.com/)  
 
 
@@ -48,3 +52,5 @@ Check relevant conditions for a day on the river. Pulls API data from USGS Water
 - add toggle for different river acitivities to adjust ideal flow rate range
 - update favicon
 - create desktop view
+- create cd pipeline for deployments
+- add scroll down refresh ability

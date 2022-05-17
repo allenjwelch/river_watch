@@ -105,15 +105,21 @@ export const CONDITION_RANGES = {
     },
     flow: {
         IDEAL: [1000, 4000],
-        SUB: [1000, 5000],
+        SUB: [200, 5000],
         WARNING: [0, 10000]
     },
 }
 
 export const STATION_VARIABLES = {
+    'Temperature, water, degrees Fahrenheit': 'Water Temp',
     'Discharge, cubic feet per second': 'Flow Rate',
     'Gage height, feet': 'Gage Height',
     'Escherichia coli, estimated by regression equation, water, colonies per 100 milliliters': 'E. Coli Level'
+}
+
+export const WARNING_MESSAGES = {
+    MISSING_DATA: 'Scoring has been adjusted. Current location is missing one or more pieces of information.',
+    SEVERE_WEATHER: 'Severe Weather Warning!'
 }
 
 export const RIVERS = {

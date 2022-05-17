@@ -35,7 +35,7 @@ const formatRating = (percent) => {
     //         label += '-';
     //     } 
 
-    } else if (percent >= 70) {
+    } else if (percent >= 60) {
         // label = 'C';
         status = 'normal';
         strokeColor = '#108ee9';

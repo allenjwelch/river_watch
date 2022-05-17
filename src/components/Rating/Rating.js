@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Progress, Row } from 'antd';
 import { getRatingIcon } from '../../utils/calculateRating';
-import { RATINGS, OWM_ICON_MAP } from '../../constants';
+import { RATINGS, OWM_ICON_MAP, WARNING_MESSAGES } from '../../constants';
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { WiSunset, WiHumidity } from 'weather-icons-react';
 // import ecoliIcon from 'ecoli2.png'
@@ -35,7 +35,7 @@ const Rating = ({ rating, setRating }) => {
                     {/* <WarningOutlined /> */}
                     {RATINGS.WARNING}
                     <span className="warning-msg">
-                        { isMissingData ? 'Incomplete Data!' : 'Severe Weather Warning!' }
+                        { isMissingData ? WARNING_MESSAGES.MISSING_DATA : WARNING_MESSAGES.SEVERE_WEATHER }
                     </span>
                 </p>
             </Col>

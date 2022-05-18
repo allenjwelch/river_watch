@@ -69,7 +69,7 @@ const formatRating = (percent) => {
 export const getRatingIcon = (score) => { //!!!! FIX
     if (score >= 10) {
         return RATINGS.GOOD
-    } else if (score > 6) {
+    } else if (score > 0) {
         return RATINGS.FAIR;
     } else {
         return RATINGS.POOR

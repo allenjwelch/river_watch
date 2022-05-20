@@ -79,8 +79,8 @@ export const OWM_ICON_MAP = {
 export const CONDITION_RANGES = {
     // output: ['IDEAL', 'SUB', 'WARNING']
     temp: {
-        IDEAL: [80,94],
-        SUB: [74,100],
+        IDEAL: [80,96],
+        SUB: [74,105],
         WARNING: [0,120]
     },
     conditions: {
@@ -104,9 +104,9 @@ export const CONDITION_RANGES = {
         WARNING: [236,5000]
     },
     flow: {
-        IDEAL: [1000, 4000],
-        SUB: [200, 5000],
-        WARNING: [0, 10000]
+        IDEAL: [500, 3500],
+        SUB: [0, 5000],
+        WARNING: [5000, 10000]
     },
 }
 

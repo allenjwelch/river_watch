@@ -55,3 +55,4 @@ Check relevant conditions for a day on the river. Pulls API data from USGS Water
 - create desktop view
 - create cd pipeline for deployments
 - add warning text for areas known to not allow certain activities
+- clean code

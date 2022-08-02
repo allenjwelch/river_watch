@@ -33,33 +33,33 @@ const Home = () => {
     const [riverData, setRiverData] = useState(null);
     const [weatherData, setWeatherData] = useState(null);
 
-    useEffect(() => {
+    const getCurrentRiverData = async () => {
+        try {
+            const response = await getConditions(riverLocation);
+            if (response && response.status === 200) {
+                setRiverData(conditionsParser(response.data, riverLocation))
+            }
+        } catch (err) {
+            console.warn(err);
+        }
+        setLoading(false);
+    }
+
+    const getCurrentWeather = async () => {
         setLoading(true);
 
-        const getCurrentRiverData = async () => {
-            try {
-                const response = await getConditions(riverLocation);
-                if (response && response.status === 200) {
-                    setRiverData(conditionsParser(response.data, riverLocation))
-                }
-            } catch (err) {
-                console.warn(err);
+        try {
+            const response = await getWeather(riverLocation);
+            if (response && response.status === 200) {
+                setWeatherData(response.data)
             }
-            setLoading(false);
+            getCurrentRiverData();
+        } catch (err) {
+            console.warn(err);
         }
+    }
 
-        const getCurrentWeather = async () => {
-            try {
-                const response = await getWeather(riverLocation);
-                if (response && response.status === 200) {
-                    setWeatherData(response.data)
-                }
-                getCurrentRiverData();
-            } catch (err) {
-                console.warn(err);
-            }
-        }
-    
+    useEffect(() => {
         getCurrentWeather();
     }, [riverLocation]);
 
@@ -116,7 +116,12 @@ const Home = () => {
 
     return (
         <main className={CN}>
-            <Header riverLocation={riverLocation} isMenuOpen={isMenuOpen} setMenuOpen={setMenuOpen}/>
+            <Header
+                riverLocation={riverLocation}
+                isMenuOpen={isMenuOpen}
+                setMenuOpen={setMenuOpen}
+                getCurrentWeather={getCurrentWeather}
+            />
             <section className='info'>
                 {
                     loading
@@ -140,7 +145,7 @@ const Home = () => {
                 />
             </Drawer>
             <footer>
-                <h4>v0.2.3</h4>
+                <h4>v0.2.4</h4>
                 <h4>Allen Welch 2021</h4>
             </footer>
         </main>

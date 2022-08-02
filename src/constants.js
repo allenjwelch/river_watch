@@ -1,9 +1,4 @@
 import { 
-    // QuestionCircleOutlined,
-    // CheckCircleOutlined,
-    // MinusCircleOutlined,
-    // CloseCircleOutlined,
-    // WarningOutlined,
     CheckCircleTwoTone,
     MinusCircleTwoTone,
     CloseCircleTwoTone,
@@ -76,37 +71,73 @@ export const OWM_ICON_MAP = {
     '50n': <WiNightAltSprinkle size={28} color='#000' />
 }
 
+export const SCORE_KEY = {
+    r1: {
+        IDEAL: 10,
+        SUB: 5,
+        WARNING: -10
+    },
+    r2: {
+        IDEAL: 10,
+        SUB: 8,
+        WARNING: 0
+    },
+    r3: {
+        IDEAL: 10,
+        SUB: 5,
+        WARNING: 0
+    },
+    r4: {
+        IDEAL: 10,
+        SUB: 8,
+        WARNING: -3
+    }
+}
+
 export const CONDITION_RANGES = {
     // output: ['IDEAL', 'SUB', 'WARNING']
     temp: {
-        IDEAL: [80,96],
-        SUB: [74,105],
-        WARNING: [0,120]
+        IDEAL: [80,110],
+        SUB: [60,79],
+        WARNING: ['<',59]
     },
     conditions: {
-        IDEAL: [0, 30],
-        SUB: [40, 60],
-        WARNING: [70, 100]
+        IDEAL: [0,30],
+        SUB: [40,60],
+        WARNING: ['>',60]
     },
     precipitation: {
-        IDEAL: [0, 20],
-        SUB: [21, 40],
-        WARNING: [41, 100]
+        IDEAL: ['<',20],
+        SUB: [21,40],
+        WARNING: [41,100]
     },
     dayLight: {
-        IDEAL: [6, 20],
-        SUB: [3, 5],
-        WARNING: [0, 2]
+        IDEAL: ['>',4],
+        SUB: [2,3],
+        WARNING: ['<',2]
     },
     eColi: {
-        IDEAL: [0,200],
+        IDEAL: ['<',200],
         SUB: [201,235],
-        WARNING: [236,5000]
+        WARNING: ['>',235]
     },
     flow: {
-        IDEAL: [500, 3500],
-        SUB: [0, 5000],
-        WARNING: [5000, 10000]
+        TUBE: {
+            IDEAL: ['<',2500],
+            SUB: [2500,4000],
+            WARNING: ['>',4000]
+        },
+        KAYAK: {
+            IDEAL: ['<',4000],
+            SUB: [4000,5000],
+            WARNING: ['>',5001]
+        },
+        RAFT: {
+            IDEAL: ['<',5000],
+            SUB: [5000,8000],
+            WARNING: ['>',8000]
+        }
+        
     },
 }
 

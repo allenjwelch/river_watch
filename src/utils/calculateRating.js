@@ -1,11 +1,13 @@
-import { CONDITION_RANGES, RATINGS } from '../constants';
+import { CONDITION_RANGES, RATINGS, SCORE_KEY } from '../constants';
 import { timeFormat, dateFormat, timeRemaining } from './dateTimeFormat';
 
 /**
- * Ideal Range Score: [10, 0, -10]
- * Individual Score: 0 - 10
- * Final: (Average IndivScore) + Ideal Range Scores
+ * Ideal Score: x
+ * Sub Score: y
+ * Danger Score: z
  */
+
+
 
 const formatRating = (percent) => {
     // success exception normal active
@@ -13,51 +15,15 @@ const formatRating = (percent) => {
     let status;
     let strokeColor;
 
-    if (percent >= 85) {
-        // label = 'A';
+    if (percent >= 80) {
         status = 'success';
         strokeColor = '#87d068';
-
-        // if (percent > 97) {
-        //     label += '+';
-        // } else if (percent < 93) {
-        //     label += '-';
-        // } 
-
-    // } else if (percent >= 80) {
-    //     label = 'B';
-    //     status = 'success';
-    //     strokeColor = '#87d068';
-
-    //     if (percent > 87) {
-    //         label += '+';
-    //     } else if (percent < 83) {
-    //         label += '-';
-    //     } 
-
     } else if (percent >= 60) {
-        // label = 'C';
         status = 'normal';
         strokeColor = '#108ee9';
-
-        // if (percent > 77) {
-        //     label += '+';
-        // } else if (percent < 73) {
-        //     label += '-';
-        // } 
-
     } else {
         status = 'exception';
         strokeColor = '#FF4D4F';
-
-        // if (percent >= 60) {
-        //     label = 'D';
-        // } else if (percent <= 59) {
-        //     label = 'F';
-        // } else {
-        //     label = '?';
-        // }
-        
     }
     return {
         label,
@@ -76,99 +42,150 @@ export const getRatingIcon = (score) => { //!!!! FIX
     }
 };
 
-export const getScoresFromRanges = (condition, value) => {
+export const getConditionScoreFromRange = (condition, value) => {
     const ranges = CONDITION_RANGES[condition];
+    const flowValue = 'KAYAK'; // setting constant for now, change later
+    const isFlow = condition === 'flow';
 
-    let indivScore = 0;
-    let ideal = 0;
+    const isLessThan = (rangeIndex) => rangeIndex === '<';
+    const isGreaterThan = (rangeIndex) => rangeIndex === '>';
 
-    const isByZero = (lowLowerRange, highUpperRange) => lowLowerRange > highUpperRange; 
-    const getMedian = (low, high) => (high - low) / 2 + low;
-    const getDistanceToTarget = (target, value) => Math.abs(target - value);
-    const getRange = (lowValue, highValue) => Math.abs(highValue - lowValue);
-    const getScore = (distanceToTarget, range) => 10 - ((distanceToTarget / range) * 10);
-    
+    let isIdeal = false;
+    let isSub = false;
+    let isWarning = false;
 
-    let median;
-    let distanceToTarget;
-    let range;
-
-    if (value >= ranges.IDEAL[0] && value <= ranges.IDEAL[1]) {
-        ideal = 10;
-
-        if (ranges.IDEAL[0] === 0) {
-            distanceToTarget = getDistanceToTarget(ranges.IDEAL[0], value);
-            range = getRange(ranges.IDEAL[0], ranges.IDEAL[1]);
+    const getRangePlacement = (min, max, range) => {
+        if (isLessThan(min)) {
+            range = value < max
+        } else if (isGreaterThan(min)) {
+            range = value > max
         } else {
-            median = getMedian(ranges.IDEAL[0], ranges.IDEAL[1]);
-            distanceToTarget = getDistanceToTarget(median, value);
-            range = getRange(median, ranges.IDEAL[1]);
+            range = value >= min && value <= max;
         }
-
-        indivScore = getScore(distanceToTarget, range);
-
-    } else if (value >= ranges.SUB[0] && value <= ranges.SUB[1]) {
-        ideal = 0;
-        if (isByZero(ranges.SUB[0], ranges.IDEAL[1])) {
-            // is by zero so no upper or lower range
-            distanceToTarget = getDistanceToTarget(ranges.SUB[0], value);
-            range = getRange(ranges.SUB[0], ranges.SUB[1]);
-        } else {
-            // is by range
-            const lowRange = [ranges.SUB[0], ranges.IDEAL[0]];
-            const highRange = [ranges.SUB[1], ranges.IDEAL[1]];
-
-            let targetValue;
-
-            if (value >= lowRange[0] && value <= lowRange[1]) {
-                // value is in lower range
-                targetValue = lowRange[1];
-                range = getRange(lowRange[0], lowRange[1]);
-
-            } else {
-                targetValue = highRange[0];
-                range = getRange(highRange[0], highRange[1]);
-            }
-
-            distanceToTarget = getDistanceToTarget(targetValue, value);
-        }
-
-        indivScore = getScore(distanceToTarget, range);
-
-    } else if (value >= ranges.WARNING[0] && value <= ranges.WARNING[1]) {
-        ideal = -10;
-        if (isByZero(ranges.WARNING[0], ranges.SUB[1])) {
-            // is by zero so no upper or lower range
-            distanceToTarget = getDistanceToTarget(ranges.WARNING[0], value);
-            range = getRange(ranges.WARNING[0], ranges.WARNING[1]);
-        } else {
-            // is by range
-            const lowRange = [ranges.WARNING[0], ranges.SUB[0]];
-            const highRange = [ranges.WARNING[1], ranges.SUB[1]];
-
-            let targetValue;
-
-            if (value >= lowRange[0] && value <= lowRange[1]) {
-                // value is in lower range
-                targetValue = lowRange[1];
-                range = getRange(lowRange[0], lowRange[1]);
-
-            } else {
-                targetValue = highRange[0];
-                range = getRange(highRange[0], highRange[1]);
-            }
-
-            distanceToTarget = getDistanceToTarget(targetValue, value);
-        }
-
-        indivScore = getScore(distanceToTarget, range);
+        return range;
     }
 
-    return {
-        indivScore,
-        ideal
-    };
-};
+    if (isFlow) { // flow specific setting
+        isIdeal = getRangePlacement(ranges[flowValue].IDEAL[0], ranges[flowValue].IDEAL[1], isIdeal);
+        isSub = getRangePlacement(ranges[flowValue].SUB[0], ranges[flowValue].SUB[1], isSub);
+        isWarning = getRangePlacement(ranges[flowValue].WARNING[0], ranges[flowValue].WARNING[1], isWarning);
+    } else {
+        isIdeal = getRangePlacement(ranges.IDEAL[0], ranges.IDEAL[1], isIdeal);
+        isSub = getRangePlacement(ranges.SUB[0], ranges.SUB[1], isSub);
+        isWarning = getRangePlacement(ranges.WARNING[0], ranges.WARNING[1], isWarning);
+    }
+
+
+    // set Scores - change with score key
+    const scoreKey = SCORE_KEY.r2;
+    if (isIdeal) {
+        return scoreKey.IDEAL;
+    } 
+    
+    if (isSub) {
+        return scoreKey.SUB;
+    }
+
+    if (isWarning) {
+        return scoreKey.WARNING;
+    }
+
+    return 0;
+}
+
+// export const getScoresFromRanges = (condition, value) => {
+//     const ranges = CONDITION_RANGES[condition];
+
+//     let indivScore = 0;
+//     let ideal = 0;
+
+//     const isByZero = (lowLowerRange, highUpperRange) => lowLowerRange > highUpperRange; 
+//     const getMedian = (low, high) => (high - low) / 2 + low;
+//     const getDistanceToTarget = (target, value) => Math.abs(target - value);
+//     const getRange = (lowValue, highValue) => Math.abs(highValue - lowValue);
+//     const getScore = (distanceToTarget, range) => 10 - ((distanceToTarget / range) * 10);
+    
+
+//     let median;
+//     let distanceToTarget;
+//     let range;
+
+//     if (value >= ranges.IDEAL[0] && value <= ranges.IDEAL[1]) {
+//         ideal = 10;
+
+//         if (ranges.IDEAL[0] === 0) {
+//             distanceToTarget = getDistanceToTarget(ranges.IDEAL[0], value);
+//             range = getRange(ranges.IDEAL[0], ranges.IDEAL[1]);
+//         } else {
+//             median = getMedian(ranges.IDEAL[0], ranges.IDEAL[1]);
+//             distanceToTarget = getDistanceToTarget(median, value);
+//             range = getRange(median, ranges.IDEAL[1]);
+//         }
+
+//         indivScore = getScore(distanceToTarget, range);
+
+//     } else if (value >= ranges.SUB[0] && value <= ranges.SUB[1]) {
+//         ideal = 0;
+//         if (isByZero(ranges.SUB[0], ranges.IDEAL[1])) {
+//             // is by zero so no upper or lower range
+//             distanceToTarget = getDistanceToTarget(ranges.SUB[0], value);
+//             range = getRange(ranges.SUB[0], ranges.SUB[1]);
+//         } else {
+//             // is by range
+//             const lowRange = [ranges.SUB[0], ranges.IDEAL[0]];
+//             const highRange = [ranges.SUB[1], ranges.IDEAL[1]];
+
+//             let targetValue;
+
+//             if (value >= lowRange[0] && value <= lowRange[1]) {
+//                 // value is in lower range
+//                 targetValue = lowRange[1];
+//                 range = getRange(lowRange[0], lowRange[1]);
+
+//             } else {
+//                 targetValue = highRange[0];
+//                 range = getRange(highRange[0], highRange[1]);
+//             }
+
+//             distanceToTarget = getDistanceToTarget(targetValue, value);
+//         }
+
+//         indivScore = getScore(distanceToTarget, range);
+
+//     } else if (value >= ranges.WARNING[0] && value <= ranges.WARNING[1]) {
+//         ideal = -10;
+//         if (isByZero(ranges.WARNING[0], ranges.SUB[1])) {
+//             // is by zero so no upper or lower range
+//             distanceToTarget = getDistanceToTarget(ranges.WARNING[0], value);
+//             range = getRange(ranges.WARNING[0], ranges.WARNING[1]);
+//         } else {
+//             // is by range
+//             const lowRange = [ranges.WARNING[0], ranges.SUB[0]];
+//             const highRange = [ranges.WARNING[1], ranges.SUB[1]];
+
+//             let targetValue;
+
+//             if (value >= lowRange[0] && value <= lowRange[1]) {
+//                 // value is in lower range
+//                 targetValue = lowRange[1];
+//                 range = getRange(lowRange[0], lowRange[1]);
+
+//             } else {
+//                 targetValue = highRange[0];
+//                 range = getRange(highRange[0], highRange[1]);
+//             }
+
+//             distanceToTarget = getDistanceToTarget(targetValue, value);
+//         }
+
+//         indivScore = getScore(distanceToTarget, range);
+//     }
+
+//     return {
+//         indivScore,
+//         ideal
+//     };
+// };
 
 export const calculateWaterRating = (riverData) => {
     // console.log('AW riverData - ', riverData);
@@ -181,10 +198,10 @@ export const calculateWaterRating = (riverData) => {
             eColiScore: null,
             flowScore: null,
         },
-        idealRange: {
-            eColiScore: null,
-            flowScore: null,
-        },
+        // idealRange: {
+        //     eColiScore: null,
+        //     flowScore: null,
+        // },
         variables: {
             avgEColi: null,
             avgFlowRate: null
@@ -215,11 +232,15 @@ export const calculateWaterRating = (riverData) => {
             const avgEColi = eColiCount.reduce((a, b) => parseInt(a) + parseInt(b)) / eColiCount.length;
             // const eColiScore = (1 - (avgEColi / 800)) * 100;
     
-            const calcEColiScores = getScoresFromRanges('eColi', avgEColi);
+            // const calcEColiScores = getScoresFromRanges('eColi', avgEColi);
 
             variables.avgEColi = avgEColi;
-            ratings.eColiScore = calcEColiScores.indivScore;
-            idealRange.eColiScore = calcEColiScores.ideal;
+            // ratings.eColiScore = calcEColiScores.indivScore;
+            // idealRange.eColiScore = calcEColiScores.ideal;
+
+            const calcEColiScore = getConditionScoreFromRange('eColi', avgEColi);
+            ratings.eColiScore = calcEColiScore;
+
         }
 
 
@@ -240,11 +261,16 @@ export const calculateWaterRating = (riverData) => {
 
             
             const avgFlowRate = flowRates.reduce((a, b) => parseInt(a) + parseInt(b)) / flowRates.length;
-            const calcFlowScores = getScoresFromRanges('flow', avgFlowRate);
+            // const calcFlowScores = getScoresFromRanges('flow', avgFlowRate);
 
             variables.avgFlowRate = avgFlowRate;
-            ratings.flowScore = calcFlowScores.indivScore;
-            idealRange.flowScore = calcFlowScores.ideal;
+            // ratings.flowScore = calcFlowScores.indivScore;
+            // idealRange.flowScore = calcFlowScores.ideal;
+
+            const calcFlowScore = getConditionScoreFromRange('flow', avgFlowRate);
+            ratings.flowScore = calcFlowScore;
+
+            
         }  
     }
 
@@ -285,14 +311,14 @@ export const calculateWeatherRating = (weatherData) => {
             // windScore: null,
             dayLightScore: null
         },
-        idealRange: {
-            // weatherScore: null,
-            tempScore: null,
-            conditionsScore: null,
-            precipitationScore: null,
-            // windScore: null,
-            dayLightScore: null
-        },
+        // idealRange: {
+        //     // weatherScore: null,
+        //     tempScore: null,
+        //     conditionsScore: null,
+        //     precipitationScore: null,
+        //     // windScore: null,
+        //     dayLightScore: null
+        // },
         variables: {
             highTemp: null,
             lowTemp: null,
@@ -311,6 +337,8 @@ export const calculateWeatherRating = (weatherData) => {
         if (currentDay.length === 1) {
             const { ratings, variables, idealRange } = weatherScore;
             const { temp: { min, max }, sunset, weather, pop } = currentDay[0];
+
+            console.log('weather: ', weather);
             
             // hourlyRange (currentTime -> sunset)
             const hourlyRange = hourly
@@ -326,20 +354,28 @@ export const calculateWeatherRating = (weatherData) => {
             
             // weatherScore
             const conditionsScore = getConditionsScore(weather[0].icon); // double check
-            const calcConditionScores = getScoresFromRanges('conditions', conditionsScore);
-            ratings.conditionsScore = calcConditionScores.indivScore;
-            idealRange.conditionsScore = calcConditionScores.ideal;
+            // const calcConditionScores = getScoresFromRanges('conditions', conditionsScore);
+            // ratings.conditionsScore = calcConditionScores.indivScore;
+            // idealRange.conditionsScore = calcConditionScores.ideal;
 
-            const calcTempScores = getScoresFromRanges('temp', max);
-            ratings.tempScore = calcTempScores.indivScore;
-            idealRange.tempScore = calcTempScores.ideal;
+            const calcConditionScore = getConditionScoreFromRange('conditions', conditionsScore);
+            ratings.conditionsScore = calcConditionScore;
+            
+            // const calcTempScores = getScoresFromRanges('temp', max);
+            // ratings.tempScore = calcTempScores.indivScore;
+            // idealRange.tempScore = calcTempScores.ideal;
+
+            const calcTempScore = getConditionScoreFromRange('temp', max);
+            ratings.tempScore = calcTempScore;
 
             // precipitationScore
             const highestPop = !!hourlyRange.length ? hourlyRange.reduce((a, b) => a.pop > b.pop ? a : b).pop : pop;
-            const calcPercipitationScores = getScoresFromRanges('precipitation', highestPop * 100);
+            // const calcPercipitationScores = getScoresFromRanges('precipitation', highestPop * 100);
+            // ratings.precipitationScore = calcPercipitationScores.indivScore;
+            // idealRange.precipitationScore = calcPercipitationScores.ideal;
 
-            ratings.precipitationScore = calcPercipitationScores.indivScore;
-            idealRange.precipitationScore = calcPercipitationScores.ideal;
+            const calcPercipitationScore = getConditionScoreFromRange('precipitation', highestPop * 100);
+            ratings.precipitationScore = calcPercipitationScore;
 
             // dayLightScore
             const timeRemainingVar = timeRemaining(Date.now(), sunset * 1000);
@@ -348,10 +384,12 @@ export const calculateWeatherRating = (weatherData) => {
                 if (timeSplit.length > 0) {
                     const hoursRemaining = parseInt(timeSplit[0]);
 
-                    const calcDaylightScores = getScoresFromRanges('dayLight', hoursRemaining);
+                    // const calcDaylightScores = getScoresFromRanges('dayLight', hoursRemaining);
+                    // ratings.dayLightScore = calcDaylightScores.indivScore;
+                    // idealRange.dayLightScore = calcDaylightScores.ideal;
 
-                    ratings.dayLightScore = calcDaylightScores.indivScore;
-                    idealRange.dayLightScore = calcDaylightScores.ideal;
+                    const calcDaylightScore = getConditionScoreFromRange('dayLight', hoursRemaining);
+                    ratings.dayLightScore = calcDaylightScore;
                 }
             }
 
@@ -378,46 +416,46 @@ export const calculateOverallRating = (riverData, weatherData) => {
 
     const variables = { ...waterRatings.variables, ...weatherRatings.variables };
     const ratings = { ...waterRatings.ratings, ...weatherRatings.ratings };
-    const idealRanges = { ...waterRatings.idealRange, ...weatherRatings.idealRange };
+    // const idealRanges = { ...waterRatings.idealRange, ...weatherRatings.idealRange };
 
     const scores = Object.values(ratings).filter(score => score !== null);
-    const ideals = Object.values(idealRanges).filter(score => score !== null);
+    // const ideals = Object.values(idealRanges).filter(score => score !== null);
     const isMissingData = Object.values(ratings).some(key => key === null);
-    const adjustedScores = {}
+    // const adjustedScores = {}
     
-    Object.entries(ratings).map(([rKey, rValue]) => {
-        let adjustedValue;
-        Object.entries(idealRanges).forEach(([iKey, iValue]) => {
-            if (iKey === rKey && rValue !== null && iValue !== null) {
-                adjustedValue = rValue + iValue
-                return adjustedValue;
-            }
-        })
+    // Object.entries(ratings).map(([rKey, rValue]) => {
+    //     let adjustedValue;
+    //     Object.entries(idealRanges).forEach(([iKey, iValue]) => {
+    //         if (iKey === rKey && rValue !== null && iValue !== null) {
+    //             adjustedValue = rValue + iValue
+    //             return adjustedValue;
+    //         }
+    //     })
         
-        if (rValue !== null) {
-            adjustedScores[rKey] = adjustedValue;
-        }
-    })
+    //     if (rValue !== null) {
+    //         adjustedScores[rKey] = adjustedValue;
+    //     }
+    // })
 
     const isSevereWeather = checkSevereWeather(weatherData);
 
     const avgScore = scores.reduce((a, b) => a + b) / scores.length;
-    const idealScores = ideals.reduce((a, b) => a + b);
-    const overallScore = (idealScores + avgScore) < 0 ? 1 : idealScores + avgScore;
-    const percent = (overallScore / ((scores.length + 1) * 10)) * 100;
-
+    // const idealScores = ideals.reduce((a, b) => a + b);
+    // const overallScore = (idealScores + avgScore) < 0 ? 1 : idealScores + avgScore;
+    // const percent = (overallScore / ((scores.length + 1) * 10)) * 100;
+    const percent = avgScore * 10;
     console.log('AW ratings - ', ratings);
-    console.log('AW idealRanges - ', idealRanges);
-    console.log('AW adjustedScores - ', adjustedScores);
+    // console.log('AW idealRanges - ', idealRanges);
+    // console.log('AW adjustedScores - ', adjustedScores);
     console.log('AW scores - ', scores);
     // console.log('AW scores.length - ', scores.length);
-    console.log('AW overallScore - ', overallScore < 0 ? 0 : overallScore);
-    console.log('AW percent - ', percent);
+    // console.log('AW overallScore - ', overallScore < 0 ? 0 : overallScore);
+    // console.log('AW percent - ', percent);
     
     const rating = {
         percent,
         ratings,
-        adjustedScores,
+        // adjustedScores,
         variables,
         isMissingData,
         isSevereWeather,

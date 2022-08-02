@@ -44,14 +44,14 @@ Check relevant conditions for a day on the river. Pulls API data from USGS Water
 - Updates rating logic with ideal, sub, and warning ranges  
 - Updates weather specific logic to use percipitation from hourly data beyond current time
 - Updates the user message & logic when missing site information
+- Adds refresh ability for site data
+- Updates favicon
   
 #### Upcoming
 - Additional links for more information
 - ratings key to better explain the rating system (antd visual scale)
 - add messages when conditions are not within ideal range
 - add toggle for different river acitivities to adjust ideal flow rate range
-- update favicon
 - create desktop view
 - create cd pipeline for deployments
-- add refresh ability for site data
 - add warning text for areas known to not allow certain activities

@@ -13,7 +13,7 @@ const CN = 'rating';
 const Rating = ({ rating, setRating }) => {
 
     if (rating) {
-        const { percent, isMissingData, isSevereWeather, formatted, ratings, adjustedScores, variables } = rating;
+        const { percent, isMissingData, isWarning, isSevereWeather, formatted, ratings, adjustedScores, variables } = rating;
         const { label, strokeColor } = formatted;
         const { eColiScore, flowScore, tempScore, conditionsScore, weatherScore, precipitationScore, dayLightScore } = ratings;
         // const { eColiScore, flowScore, tempScore, conditionsScore, precipitationScore, dayLightScore } = adjustedScores;
@@ -31,13 +31,39 @@ const Rating = ({ rating, setRating }) => {
 
         const renderWarning = () => (
             <Col span={24}>
-                <p>
-                    {/* <WarningOutlined /> */}
-                    {RATINGS.WARNING}
-                    <span className="warning-msg">
-                        { isMissingData ? WARNING_MESSAGES.MISSING_DATA : WARNING_MESSAGES.SEVERE_WEATHER }
-                    </span>
-                </p>
+
+                {
+                    isWarning && (
+                        <div>
+                            {RATINGS.WARNING}
+                            <span className="warning-msg">
+                                <b>CAUTION:</b>
+                                {WARNING_MESSAGES.HAZARDOUS_CONDITION}
+                            </span>
+                        </div>
+                    )
+                }
+                {
+                    isSevereWeather && (
+                        <div>
+                            {RATINGS.WARNING}
+                            <span className="warning-msg">
+                                {WARNING_MESSAGES.SEVERE_WEATHER}
+                            </span>
+                        </div>
+                    )
+                }
+                {
+                    isMissingData && (
+                        <div>
+                            {RATINGS.WARNING}
+                            <span className="warning-msg">
+                                {WARNING_MESSAGES.MISSING_DATA}
+                            </span>
+                        </div>
+                    )
+                }
+               
             </Col>
         );
 
@@ -146,7 +172,7 @@ const Rating = ({ rating, setRating }) => {
                 </Row>
 
                 <Row className="warning-row">
-                    { (isMissingData || isSevereWeather) && renderWarning() }
+                    { (isWarning || isMissingData || isSevereWeather) && renderWarning() }
                 </Row>
             </div>
         )

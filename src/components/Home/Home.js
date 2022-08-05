@@ -145,7 +145,7 @@ const Home = () => {
                 />
             </Drawer>
             <footer>
-                <h4>v0.2.4</h4>
+                <h4>v0.2.5</h4>
                 <h4>Allen Welch 2021</h4>
             </footer>
         </main>

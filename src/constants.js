@@ -108,17 +108,17 @@ export const CONDITION_RANGES = {
     },
     precipitation: {
         IDEAL: ['<',20],
-        SUB: [21,40],
+        SUB: [20,40],
         WARNING: [41,100]
     },
     dayLight: {
-        IDEAL: ['>',4],
+        IDEAL: ['>',3],
         SUB: [2,3],
         WARNING: ['<',2]
     },
     eColi: {
         IDEAL: ['<',200],
-        SUB: [201,235],
+        SUB: [200,235],
         WARNING: ['>',235]
     },
     flow: {
@@ -150,7 +150,8 @@ export const STATION_VARIABLES = {
 
 export const WARNING_MESSAGES = {
     MISSING_DATA: 'Scoring has been adjusted. Current location is missing one or more pieces of information.',
-    SEVERE_WEATHER: 'Severe Weather Warning!'
+    SEVERE_WEATHER: 'Severe Weather Warning!',
+    HAZARDOUS_CONDITION: ' One or more conditions may make the river more hazardous than normal.'
 }
 
 export const RIVERS = {

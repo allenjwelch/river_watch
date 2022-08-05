@@ -1,5 +1,6 @@
 import { CONDITION_RANGES, RATINGS, SCORE_KEY } from '../constants';
 import { timeFormat, dateFormat, timeRemaining } from './dateTimeFormat';
+const scoreKey = SCORE_KEY.r2;
 
 /**
  * Ideal Score: x
@@ -77,7 +78,6 @@ export const getConditionScoreFromRange = (condition, value) => {
 
 
     // set Scores - change with score key
-    const scoreKey = SCORE_KEY.r2;
     if (isIdeal) {
         return scoreKey.IDEAL;
     } 
@@ -421,6 +421,7 @@ export const calculateOverallRating = (riverData, weatherData) => {
     const scores = Object.values(ratings).filter(score => score !== null);
     // const ideals = Object.values(idealRanges).filter(score => score !== null);
     const isMissingData = Object.values(ratings).some(key => key === null);
+    const isWarning = Object.values(scores).some(score => score === scoreKey.WARNING);
     // const adjustedScores = {}
     
     // Object.entries(ratings).map(([rKey, rValue]) => {
@@ -458,6 +459,7 @@ export const calculateOverallRating = (riverData, weatherData) => {
         // adjustedScores,
         variables,
         isMissingData,
+        isWarning,
         isSevereWeather,
         formatted: formatRating(percent)
     };

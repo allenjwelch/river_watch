@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Collapse, Drawer, Spin } from 'antd';
+import { Card, Col, Collapse, Drawer, Row, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import Header from '../Header/Header';
 import Menu from '../Menu/Menu';
@@ -73,6 +73,7 @@ const Home = () => {
 
     const renderStationInfo = () => {
         if (riverData) {
+            console.log(riverData);
             return (
                 <div className='water-stations'>
 
@@ -107,9 +108,19 @@ const Home = () => {
 
     const renderInfoSection = () => (
         <>
-            <Rating rating={rating} setRating={setRating} />
-            <Weather weatherData={weatherData} />
-            { renderStationInfo() }
+            <Row gutter={16}>
+                <Col md={24} lg={12}>
+                    <Rating rating={rating} setRating={setRating} />
+                </Col>
+                <Col md={24} lg={12}>
+                    <Weather weatherData={weatherData} />
+                </Col>
+            </Row>
+            <Row>
+                <Col span={24}>
+                    { renderStationInfo() }
+                </Col>
+            </Row>
         </>
     );
 

@@ -179,7 +179,7 @@ export const LOCATION_DATA = {
                 RIVER_STATIONS: '02335815,02335880,02335990,02336000',
                 STATION_NAMES: {
                     'CHATTAHOOCHEE RIVER BELOW MORGAN FALLS DAM, GA': 'MORGAN_FALLS',
-                    'CHATT R AT POWERS FY & I-285 NR ATLANTA, GA': 'POWERS_FERRY',
+                    'CHATT R AT POWERS FY AND I-285 NR ATLANTA, GA': 'POWERS_FERRY',
                     'CHATTAHOOCHEE RIVER AT US 41, AT ATLANTA, GA': 'US_41_ATL',
                     'CHATTAHOOCHEE RIVER AT ATLANTA, GA' : 'PACES_FERRY'
                 },

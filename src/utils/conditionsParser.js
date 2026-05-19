@@ -46,6 +46,7 @@ export const conditionsParser = (conditions, location) => {
         //     siteMap.set(LOCATIONS[sourceInfo.siteName], [data]);
         // }
     
+        // TODO add default
         if (siteObj.sites.some(site => site.name === riverLocation.FORMATTED_STATION_NAMES[stationCode])) {
             siteObj.sites.find(site => site.name === riverLocation.FORMATTED_STATION_NAMES[stationCode]).variables.push(data);
         } else {

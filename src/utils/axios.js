@@ -11,6 +11,8 @@ export const getConditions = async (location) => {
     const url = WATER_SERVICE_URL.replace('{SITES}', stations)
     try {
         const response = await axios.get(url);
+        console.log("WATER_SERVICE");
+        console.log(response);
         return response;
     } catch (error) {
         console.error(error);

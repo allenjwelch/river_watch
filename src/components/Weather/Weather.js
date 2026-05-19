@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Tabs } from 'antd';
+import { Card, Empty, Tabs } from 'antd';
 import { ERROR_MESSAGES } from '../../constants';
 
 import Current from './Current/Current';
@@ -50,7 +50,14 @@ const Weather = ({ weatherData }) => {
                 </Card>
             );
         }
-        return <p className='error'>{ERROR_MESSAGES.NO_WEATHER}</p>;
+        return (
+            <>
+                <Empty
+                    image={Empty.PRESENTED_IMAGE_SIMPLE}
+                    description={<p className='error'>{ERROR_MESSAGES.NO_WEATHER}</p>}
+                />
+            </>
+        )
     };
 
     return (

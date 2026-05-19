@@ -54,9 +54,15 @@ All applications secrets are stored in `.env` and not pushed to repository.
 - Updates the user message & logic when missing site information
 - Adds refresh ability for site data
 - Updates favicon
+
+### v0.2.7
+- Adds responsive layout for desktop
+- Adds "empty" icon when missing weather data
+- Corrects missing Water Station name
   
 ### Upcoming
 - Update Heroku Stack
+- Set default if station name is not matching
 - Additional links for more information
 - ratings key to better explain the rating system (antd visual scale)
 - add messages when conditions are not within ideal range

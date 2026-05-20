@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Col, Collapse, Drawer, Row, Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
+import { Button, Card, Col, Collapse, Drawer, Row, Spin } from 'antd';
+import { InfoOutlined, LoadingOutlined } from '@ant-design/icons';
 import Header from '../Header/Header';
 import Menu from '../Menu/Menu';
 import Rating from '../Rating/Rating';
@@ -32,6 +32,7 @@ const Home = () => {
     const [rating, setRating] = useState(null);
     const [riverData, setRiverData] = useState(null);
     const [weatherData, setWeatherData] = useState(null);
+    const [isInfoDrawerOpen, setInfoDrawerOpen] = useState(false);
 
     const getCurrentRiverData = async () => {
         try {
@@ -156,9 +157,37 @@ const Home = () => {
                 />
             </Drawer>
             <footer>
-                <h4>v0.2.8</h4>
+                <h4>v0.3.0</h4>
                 <h4>Allen Welch 2021</h4>
             </footer>
+
+            { riverLocation.river == 'CHATT'
+             ? (<Button
+                    className="info-btn"
+                    shape="circle"
+                    icon={<InfoOutlined />}
+                    onClick={() => setInfoDrawerOpen(true)}
+                />) 
+            : <></>}
+
+            <Drawer
+                // title="Resources"
+                width={'80%'}
+                height="160px"
+                closable={false}
+                onClose={() => setInfoDrawerOpen(false)}
+                visible={isInfoDrawerOpen}
+                placement="bottom"
+            >
+                <div className="info-drawer">
+                    <p style={{ paddingBottom: 10 }}><i>For more information on conditions of the Chattahoochee River:</i></p>
+                    <p><a href='https://www.nps.gov/chat/planyourvisit/river-flow-rate.htm' target='_blank'>Chattahoochee Flow Rate</a></p>
+                    <p><a href='https://ga.water.usgs.gov/bacteria/' target='_blank'>BacteriAlert</a></p>
+                </div>
+            </Drawer>
+
+            
+            
         </main>
     )
 };

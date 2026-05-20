@@ -75,6 +75,12 @@
         }
     }
 
+    .info-btn {
+        position: fixed;
+        right: 5%;
+        bottom: 8%;
+    }
+
     @media (width <= 991px) {
         .rating, .weather-info, .water-stations {
             width: 95vw;

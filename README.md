@@ -21,12 +21,23 @@ npm start
 ## Secrets
 All applications secrets are stored in `.env` and not pushed to repository.
 * REACT_APP_WEATHER_KEY: OpenWeather API Key
+* HEROKU_API_KEY: 
+* HEROKU_APP_NAME
+* HEROKU_EMAIL
+
+
+## Local Docker Build/Run
+```
+docker build -t river-watch .
+docker run -p 80:3000 my-react-app
+```
 
 
 ## Deployment
 1. [Install Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)  
 2. Manually update version in `package.json`
 3. `heroku git:remote -a river-watch` - Add heroku git remote  
+4. In Heroku application settings, set BuildPack to `heroku-community/nginx`
 4. `git push heroku master` - Deploy from command line  
   
 
@@ -63,11 +74,12 @@ All applications secrets are stored in `.env` and not pushed to repository.
 ### Upcoming
 - Update Heroku Stack
 - Set default if station name is not matching
+- Change default branch to main
+- Create Java backend
 - Additional links for more information
 - ratings key to better explain the rating system (antd visual scale)
 - add messages when conditions are not within ideal range
 - add toggle for different river acitivities to adjust ideal flow rate range
-- create desktop view
 - create cd pipeline for deployments
 - add warning text for areas known to not allow certain activities
 - clean code

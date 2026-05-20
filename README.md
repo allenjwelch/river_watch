@@ -56,6 +56,10 @@ docker run -p 80:3000 my-react-app
 
 ## Changelog  
 
+### v0.3.0
+- Updates OpenWeather API URL
+- Add drawer for displaying resources for the chattahoochee river
+
 ### v0.2.8
 - Updates deployment automation
 - Adds new weather api key
@@ -78,14 +82,11 @@ docker run -p 80:3000 my-react-app
 
 
 ### Upcoming
-- Update Heroku Stack
 - Set default if station name is not matching
 - Change default branch to main
 - Create Java backend
-- Additional links for more information
 - ratings key to better explain the rating system (antd visual scale)
 - add messages when conditions are not within ideal range
 - add toggle for different river acitivities to adjust ideal flow rate range
-- create cd pipeline for deployments
 - add warning text for areas known to not allow certain activities
 - clean code

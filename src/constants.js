@@ -36,7 +36,7 @@ const PARAM_CDS = {
 
 export const WATER_SERVICE_URL =  `https://waterservices.usgs.gov/nwis/iv/?format=json&sites={SITES}&parameterCd=${PARAM_CDS.TEMP},${PARAM_CDS.DISCHARGE},${PARAM_CDS.GAGE_HEIGHT},${PARAM_CDS.ECOLI}&siteStatus=all`;
 
-export const WEATHER_SERVICE_URL = `https://api.openweathermap.org/data/2.5/onecall?lat={LAT}&lon={LON}&units=imperial&exclude=minute&appid=${REACT_APP_WEATHER_KEY}`;
+export const WEATHER_SERVICE_URL = `https://api.openweathermap.org/data/3.0/onecall?lat={LAT}&lon={LON}&units=imperial&exclude=minute&appid=${REACT_APP_WEATHER_KEY}`;
 
 export const ERROR_MESSAGES = {
     NO_WATER: 'USGS Water Services not available',

@@ -18,13 +18,13 @@ npm i
 npm start
 ```
 
+
 ## Secrets
 All applications secrets are stored in `.env` and not pushed to repository.
 * REACT_APP_WEATHER_KEY: OpenWeather API Key
 * HEROKU_APP_NAME: Heroku application name
 * HEROKU_API_KEY: Heroku account API key
 * HEROKU_EMAIL: Heroku account email
-
 
 ## Local Docker Build/Run
 ```
@@ -55,9 +55,15 @@ docker run -p 80:3000 my-react-app
 
 
 ## Changelog  
-### v0.1.0  
-- Initial build
-- Test design concept
+
+### v0.2.8
+- Updates deployment automation
+- Adds new weather api key
+
+### v0.2.7
+- Adds responsive layout for desktop
+- Adds "empty" icon when missing weather data
+- Corrects missing Water Station name
 
 ### v0.2.0
 - Updates rating logic with ideal, sub, and warning ranges  
@@ -66,15 +72,11 @@ docker run -p 80:3000 my-react-app
 - Adds refresh ability for site data
 - Updates favicon
 
-### v0.2.7
-- Adds responsive layout for desktop
-- Adds "empty" icon when missing weather data
-- Corrects missing Water Station name
+### v0.1.0  
+- Initial build
+- Test design concept
 
-### v0.2.8
-- Updates deployment automation
-- Adds new weather api key
-  
+
 ### Upcoming
 - Update Heroku Stack
 - Set default if station name is not matching

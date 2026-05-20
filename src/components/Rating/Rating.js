@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Col, Progress, Row } from 'antd';
 import { getRatingIcon } from '../../utils/calculateRating';
 import { RATINGS, OWM_ICON_MAP, WARNING_MESSAGES } from '../../constants';
@@ -11,6 +11,15 @@ import './Rating.scss';
 const CN = 'rating';
 
 const Rating = ({ rating, setRating }) => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const width = window.innerWidth;
+        if (width <= 640) {
+            setIsMobile(true);
+        }
+    }, []);
+
 
     if (rating) {
         const { percent, isMissingData, isWarning, isSevereWeather, formatted, ratings, adjustedScores, variables } = rating;
@@ -31,7 +40,6 @@ const Rating = ({ rating, setRating }) => {
 
         const renderWarning = () => (
             <Col span={24}>
-
                 {
                     isWarning && (
                         <div>
@@ -150,10 +158,12 @@ const Rating = ({ rating, setRating }) => {
                         <h4>{currentDay}</h4>
                     </Col>
                 </Row>
-                <Row justify="center" className="main-row">
-                    <Col span={10} className="progress-col">
+                <Row className="main-row" justify="center" align="middle" gutter={[24, 0]}>
+                    {/* span={10}  */}
+                    <Col className="progress-col"> 
                         <Progress 
                             type="circle" 
+                            width={isMobile ? 120 : 160}
                             percent={percent} 
                             format={() => label}
                             strokeColor={strokeColor}

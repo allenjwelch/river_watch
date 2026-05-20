@@ -50,10 +50,6 @@
                 padding: 8px 0;
             }
         }
-
-        @media (width <= 991px) {
-            width: 95vw;
-        }
     }
 
     .water-stations {
@@ -76,6 +72,12 @@
             padding: 4px 8px;
             font-size: 12px;
 
+        }
+    }
+
+    @media (width <= 991px) {
+        .rating, .weather-info, .water-stations {
+            width: 95vw;
         }
     }
 }

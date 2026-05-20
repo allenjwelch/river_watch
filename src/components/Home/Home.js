@@ -108,11 +108,11 @@ const Home = () => {
 
     const renderInfoSection = () => (
         <>
-            <Row gutter={16}>
-                <Col md={24} lg={12}>
+            <Row className="rating-weather-row" justify="center" align="middle">
+                <Col md={24} lg={10}>
                     <Rating rating={rating} setRating={setRating} />
                 </Col>
-                <Col md={24} lg={12}>
+                <Col md={24} lg={10}>
                     <Weather weatherData={weatherData} />
                 </Col>
             </Row>

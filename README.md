@@ -78,7 +78,6 @@ docker run -p 80:3000 my-react-app
 
 
 ### Upcoming
-- Update Heroku Stack
 - Set default if station name is not matching
 - Change default branch to main
 - Create Java backend
@@ -86,6 +85,5 @@ docker run -p 80:3000 my-react-app
 - ratings key to better explain the rating system (antd visual scale)
 - add messages when conditions are not within ideal range
 - add toggle for different river acitivities to adjust ideal flow rate range
-- create cd pipeline for deployments
 - add warning text for areas known to not allow certain activities
 - clean code

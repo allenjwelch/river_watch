@@ -3,10 +3,6 @@
     .anticon {
         font-size: 16px;
         padding: 6px;
-        // &.anticon-question-circle {
-        //     font-size: 16px;
-        //     padding: 6px;
-        // }
     }
 
     .date-row {
@@ -19,8 +15,7 @@
         padding: 0 2%;
 
         .progress-col {
-            padding-top: 12px;
-            text-align: center;
+            padding: 12px 0;
         }
 
         .variables-col {

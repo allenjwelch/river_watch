@@ -21,9 +21,9 @@ npm start
 ## Secrets
 All applications secrets are stored in `.env` and not pushed to repository.
 * REACT_APP_WEATHER_KEY: OpenWeather API Key
-* HEROKU_API_KEY: 
-* HEROKU_APP_NAME
-* HEROKU_EMAIL
+* HEROKU_APP_NAME: Heroku application name
+* HEROKU_API_KEY: Heroku account API key
+* HEROKU_EMAIL: Heroku account email
 
 
 ## Local Docker Build/Run
@@ -35,7 +35,7 @@ docker run -p 80:3000 my-react-app
 
 ## Deployment
 1. [Install Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli)  
-2. Manually update version in `package.json`
+2. Manually update version in `package.json` and `Footer`
 3. `heroku git:remote -a river-watch` - Add heroku git remote  
 4. In Heroku application settings, set BuildPack to `heroku-community/nginx`
 4. `git push heroku master` - Deploy from command line  
@@ -70,6 +70,10 @@ docker run -p 80:3000 my-react-app
 - Adds responsive layout for desktop
 - Adds "empty" icon when missing weather data
 - Corrects missing Water Station name
+
+### v0.2.8
+- Updates deployment automation
+- Adds new weather api key
   
 ### Upcoming
 - Update Heroku Stack

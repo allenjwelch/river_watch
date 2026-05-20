@@ -38,7 +38,7 @@ docker run -p 80:3000 my-react-app
 2. Manually update version in `package.json` and `Footer`
 3. `heroku git:remote -a river-watch` - Add heroku git remote  
 4. In Heroku application settings, set BuildPack to `heroku-community/nginx`
-4. `git push heroku master` - Deploy from command line  
+5. `git push heroku master` - Deploy from command line  
   
 
 ## Service Calls  

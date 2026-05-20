@@ -22,4 +22,5 @@ jobs:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           dockerfile_directory: ./
+          docker_options: "--build-arg REACT_APP_WEATHER_KEY=${{ secrets.REACT_APP_WEATHER_KEY }}"
           process_type: web

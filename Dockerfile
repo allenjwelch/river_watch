@@ -8,9 +8,11 @@ RUN npm run build
 
 # Runtime stage
 FROM nginx:stable-alpine AS production
+RUN apk add --no-cache gettext
+COPY nginx.conf.template /etc/nginx/nginx.conf.template
 COPY --from=builder /app/build /usr/share/nginx/html
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "-c", ": ${PORT:=80} && envsubst '$PORT' < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf && nginx -g 'daemon off;'"]
 
 
 # # Use an official Node.js runtime as a base image
